@@ -1,0 +1,2117 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAI SINDHU — SENIOR SOFTWARE ENGINEER</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Bebas+Neue&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Caveat:wght@400;700&family=Reenie+Beanie&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brandBlack: '#0d0d0d',
+          brandWhite: '#f7f4ed',
+          brandYellow: '#ffe135',
+          brandRed: '#ff2d2d',
+          brandBlue: '#1a6fff',
+          brandGreen: '#00e676',
+          brandOrange: '#ff6b1a',
+          brandPink: '#ff3da8'
+        },
+        fontFamily: {
+          display: ['Bebas Neue', 'sans-serif'],
+          body: ['Space Grotesk', 'sans-serif'],
+          mono: ['Space Mono', 'monospace'],
+          handwritten: ['Caveat', 'cursive'],
+          signature: ['Reenie Beanie', 'cursive']
+        }
+      }
+    }
+  }
+</script>
+
+<style>
+:root {
+  --black: #0d0d0d;
+  --white: #f7f4ed;
+  --yellow: #ffe135;
+  --red: #ff2d2d;
+  --blue: #1a6fff;
+  --green: #00e676;
+  --orange: #ff6b1a;
+  --pink: #ff3da8;
+  --border: 3px solid var(--black);
+  --shadow: 5px 5px 0 var(--black);
+  --shadow-lg: 8px 8px 0 var(--black);
+  --shadow-xl: 12px 12px 0 var(--black);
+}
+
+body {
+  font-family: 'Space Grotesk', sans-serif;
+  background-color: var(--white);
+  color: var(--black);
+  overflow-x: hidden;
+  cursor: none; /* Hide systemic cursor for modern micro-interaction cursor */
+  background-image: 
+    radial-gradient(var(--black) 1px, transparent 0),
+    radial-gradient(var(--black) 1px, transparent 0);
+  background-size: 24px 24px;
+  background-position: 0 0, 12px 12px;
+}
+
+/* Premium Scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-track {
+  background: var(--white);
+  border-left: var(--border);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--black);
+  border: 2px solid var(--white);
+}
+
+/* Custom Interactive Cursor Elements */
+#customCursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  background-color: var(--yellow);
+  border: 3px solid var(--black);
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.15s cubic-bezier(0.16, 1, 0.3, 1), 
+              height 0.15s cubic-bezier(0.16, 1, 0.3, 1), 
+              background-color 0.15s ease, 
+              transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Red Diamond state triggered via hover script */
+#customCursor.diamond-hover {
+  width: 24px;
+  height: 24px;
+  background-color: var(--red);
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+/* Mouse Spotlight underlay styling */
+.spotlight-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: color-burn;
+  background: radial-gradient(circle 350px at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 225, 53, 0.12), transparent 80%);
+}
+
+.brutalist-card {
+  border: var(--border);
+  background: var(--white);
+  box-shadow: var(--shadow-lg);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.brutalist-card:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: var(--shadow-xl);
+}
+
+.sec-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  background: var(--black);
+  color: var(--white);
+  display: inline-block;
+  padding: 6px 16px;
+  box-shadow: var(--shadow);
+}
+
+/* Non-overflowing Infinite Marquee */
+.marquee-container {
+  overflow: hidden;
+  border: var(--border);
+  box-shadow: var(--shadow);
+  background: var(--black);
+  width: 100%;
+  position: relative;
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 32s linear infinite;
+}
+.marquee-container:hover .marquee-track {
+  animation-play-state: paused;
+}
+.mq-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 32px;
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+@keyframes marquee-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+#skillsBoard {
+  border: var(--border);
+  box-shadow: var(--shadow-lg);
+  background: var(--white);
+  min-height: 400px;
+  position: relative;
+  overflow: hidden;
+  background-image:
+    linear-gradient(rgba(10,10,10,0.05) 1.5px, transparent 1.5px),
+    linear-gradient(90deg, rgba(10,10,10,0.05) 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
+}
+.skill-tag {
+  position: absolute;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 10px 18px;
+  border: var(--border);
+  box-shadow: 4px 4px 0 var(--black);
+  cursor: grab;
+  user-select: none;
+  transition: box-shadow 0.1s, transform 0.1s;
+  z-index: 10;
+}
+.skill-tag:active {
+  cursor: grabbing;
+}
+
+/* 3D Business Card Flip */
+.card-3d-wrap {
+  perspective: 1000px;
+  width: 100%;
+  max-width: 360px;
+  height: 220px;
+}
+.card-3d-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+.card-3d-wrap.flipped .card-3d-inner {
+  transform: rotateY(180deg);
+}
+.card-3d-front, .card-3d-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border: var(--border);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.5rem;
+}
+.card-3d-front {
+  background: var(--yellow);
+  color: var(--black);
+}
+.card-3d-back {
+  background: var(--black);
+  color: var(--white);
+  transform: rotateY(180deg);
+}
+
+.timeline-dot {
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--black);
+  background: var(--white);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.timeline-dot.active {
+  background: var(--yellow);
+  transform: scale(1.4);
+  box-shadow: 2px 2px 0 var(--black);
+}
+
+/* Next-Gen Nav Dock Active State */
+.top-nav-link.active {
+  background-color: var(--white) !important;
+  color: var(--black) !important;
+  box-shadow: 2px 2px 0 var(--yellow);
+  transform: translateY(-1px);
+}
+
+/* Scroll reveal element styling */
+.reveal-el {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-el.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── POSTCARD 3D FLIP MECHANICS (Fixed Height Overflow Logic) ── */
+.postcard-container {
+  perspective: 1800px;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+}
+.postcard-inner {
+  width: 100%;
+  /* Using CSS Grid to perfectly overlap and contain both front & back securely */
+  display: grid;
+  transform-style: preserve-3d;
+  transition: transform 0.75s cubic-bezier(0.175, 0.885, 0.32, 1.15), box-shadow 0.3s ease;
+  transform: rotateZ(-1.5deg);
+  cursor: pointer;
+}
+.postcard-inner.flipped {
+  transform: rotateY(180deg) rotateZ(1deg);
+}
+.postcard-front, .postcard-back {
+  /* Both faces sit in the same grid cell preventing height collapse or bottom bleed */
+  grid-area: 1 / 1;
+  width: 100%;
+  backface-visibility: hidden;
+  border: var(--border);
+  box-shadow: var(--shadow-xl);
+  border-radius: 16px;
+  background-color: #faf8f5; /* Premium paper cream styling */
+  transition: box-shadow 0.3s ease;
+}
+.postcard-back {
+  transform: rotateY(180deg);
+  background-color: #fcfbf9;
+}
+.postcard-container:hover .postcard-inner {
+  box-shadow: 16px 16px 0 var(--black);
+}
+
+/* Blinking typewriter caret */
+.typewriter-cursor {
+  display: inline-block;
+  width: 2.5px;
+  height: 17px;
+  background-color: var(--brandBlue);
+  margin-left: 2px;
+  animation: caret-blink 0.8s infinite steps(2);
+}
+@keyframes caret-blink {
+  50% { opacity: 0; }
+}
+
+/* Wax seal hover keyframe */
+.seal-pulse:hover {
+  transform: scale(1.06) rotate(-3deg);
+  box-shadow: 4px 4px 0 var(--black);
+}
+</style>
+</head>
+<body class="antialiased relative select-none">
+
+<!-- CUSTOM HARDWARE CURSOR -->
+<div id="customCursor"></div>
+
+<!-- MOUSE SPOTLIGHT UNDERLAY -->
+<div class="spotlight-bg"></div>
+
+<!-- TIMELINE INDICATOR (Right Side Desktop Float) -->
+<aside class="fixed right-6 top-1/2 -translate-y-1/2 z-40 hidden lg:flex flex-col items-center gap-5 bg-brandWhite/90 backdrop-blur border-2 border-brandBlack p-3 shadow-[4px_4px_0_#0d0d0d] hover:shadow-[6px_6px_0_#0d0d0d] hover:-translate-x-0.5 transition-all duration-200">
+  <div class="text-[8px] font-mono font-bold uppercase tracking-widest text-zinc-500 mb-1" style="writing-mode: vertical-rl;">NAVIGATE</div>
+  <a href="#hero" class="timeline-dot-anchor group relative" data-section="hero" title="Top">
+    <div class="timeline-dot active"></div>
+    <span class="absolute right-8 top-1/2 -translate-y-1/2 bg-brandBlack text-brandWhite text-[9px] font-mono font-bold px-2 py-1 border border-brandBlack shadow-[2px_2px_0_#ffe135] uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-150 pointer-events-none whitespace-nowrap">TOP</span>
+  </a>
+  <a href="#work" class="timeline-dot-anchor group relative" data-section="work" title="Experience">
+    <div class="timeline-dot"></div>
+    <span class="absolute right-8 top-1/2 -translate-y-1/2 bg-brandBlack text-brandWhite text-[9px] font-mono font-bold px-2 py-1 border border-brandBlack shadow-[2px_2px_0_#ffe135] uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-150 pointer-events-none whitespace-nowrap">EXPERIENCE</span>
+  </a>
+  <a href="#projects" class="timeline-dot-anchor group relative" data-section="projects" title="Projects">
+    <div class="timeline-dot"></div>
+    <span class="absolute right-8 top-1/2 -translate-y-1/2 bg-brandBlack text-brandWhite text-[9px] font-mono font-bold px-2 py-1 border border-brandBlack shadow-[2px_2px_0_#ffe135] uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-150 pointer-events-none whitespace-nowrap">PROJECTS</span>
+  </a>
+  <a href="#skills" class="timeline-dot-anchor group relative" data-section="skills" title="Stack Board">
+    <div class="timeline-dot"></div>
+    <span class="absolute right-8 top-1/2 -translate-y-1/2 bg-brandBlack text-brandWhite text-[9px] font-mono font-bold px-2 py-1 border border-brandBlack shadow-[2px_2px_0_#ffe135] uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-150 pointer-events-none whitespace-nowrap">STACK BOARD</span>
+  </a>
+  <a href="#certifications" class="timeline-dot-anchor group relative" data-section="certifications" title="Credentials">
+    <div class="timeline-dot"></div>
+    <span class="absolute right-8 top-1/2 -translate-y-1/2 bg-brandBlack text-brandWhite text-[9px] font-mono font-bold px-2 py-1 border border-brandBlack shadow-[2px_2px_0_#ffe135] uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-150 pointer-events-none whitespace-nowrap">CREDENTIALS</span>
+  </a>
+  <a href="#postcardSection" class="timeline-dot-anchor group relative" data-section="postcardSection" title="Postcard">
+    <div class="timeline-dot"></div>
+    <span class="absolute right-8 top-1/2 -translate-y-1/2 bg-brandBlack text-brandWhite text-[9px] font-mono font-bold px-2 py-1 border border-brandBlack shadow-[2px_2px_0_#ffe135] uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-150 pointer-events-none whitespace-nowrap">POSTCARD NOTE</span>
+  </a>
+  <a href="#contact" class="timeline-dot-anchor group relative" data-section="contact" title="Get In Touch">
+    <div class="timeline-dot"></div>
+    <span class="absolute right-8 top-1/2 -translate-y-1/2 bg-brandBlack text-brandWhite text-[9px] font-mono font-bold px-2 py-1 border border-brandBlack shadow-[2px_2px_0_#ffe135] uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-150 pointer-events-none whitespace-nowrap">CONTACT</span>
+  </a>
+</aside>
+
+<!-- STATIC NEXT-GEN TOP NAVBAR (Dynamic Magnetic Dock) -->
+<div id="mainHeaderWrapper" class="hidden md:block fixed top-6 left-1/2 -translate-x-1/2 z-50 w-full max-w-7xl px-4 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
+  <header class="relative bg-brandWhite/85 backdrop-blur-xl border-3 border-brandBlack rounded-2xl flex items-center justify-between p-2 pl-4 shadow-[8px_8px_0_#0d0d0d] transition-all duration-400 group" id="mainHeader">
+    
+    <!-- Reading Progress Indicator -->
+    <div class="absolute bottom-0 left-0 h-1 bg-brandBlack/10 w-full rounded-b-2xl overflow-hidden"></div>
+    <div id="navProgress" class="absolute bottom-0 left-0 h-1 bg-brandYellow z-10 transition-all duration-75 rounded-bl-2xl shadow-[0_0_10px_#ffe135]"></div>
+
+    <!-- Left: Branding Stack -->
+    <div class="flex items-center gap-3">
+      <a href="#hero" class="relative overflow-hidden w-11 h-11 bg-brandBlack text-brandYellow font-display text-2xl flex items-center justify-center rounded-xl border-2 border-brandBlack shadow-[2px_2px_0_#ffe135] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all group/logo">
+        <span class="relative z-10 group-hover/logo:-translate-y-12 transition-transform duration-300">SS</span>
+        <span class="absolute inset-0 flex items-center justify-center text-brandBlack bg-brandYellow translate-y-12 group-hover/logo:translate-y-0 transition-transform duration-300">SS</span>
+      </a>
+      <div class="flex flex-col select-none overflow-hidden">
+        <span class="font-display text-2xl leading-none text-brandBlack tracking-widest transform transition-transform group-hover:translate-x-1">SAI SINDHU</span>
+        <span class="font-mono text-[9px] text-zinc-500 font-bold uppercase tracking-widest mt-0.5">SOFTWARE ENGINEER</span>
+      </div>
+    </div>
+    
+    <!-- Center: Floating Dock Matrix -->
+    <nav class="absolute left-1/2 -translate-x-1/2 flex items-center p-1.5 bg-brandBlack border-2 border-brandBlack rounded-xl shadow-[inset_0_4px_4px_rgba(0,0,0,0.5)] gap-1">
+      <a href="#work" data-nav="work" class="top-nav-link relative px-4 py-1.5 font-mono text-[10px] font-bold rounded-lg text-zinc-400 hover:text-brandBlack hover:bg-brandYellow transition-all duration-300 overflow-hidden group/link">
+        <span class="relative z-10">WORK</span>
+      </a>
+      <a href="#projects" data-nav="projects" class="top-nav-link relative px-4 py-1.5 font-mono text-[10px] font-bold rounded-lg text-zinc-400 hover:text-brandBlack hover:bg-brandGreen transition-all duration-300 overflow-hidden group/link">
+        <span class="relative z-10">PROJECTS</span>
+      </a>
+      <a href="#skills" data-nav="skills" class="top-nav-link relative px-4 py-1.5 font-mono text-[10px] font-bold rounded-lg text-zinc-400 hover:text-white hover:bg-brandBlue transition-all duration-300 overflow-hidden group/link">
+        <span class="relative z-10">STACK</span>
+      </a>
+      <a href="#contact" data-nav="contact" class="top-nav-link relative px-4 py-1.5 font-mono text-[10px] font-bold rounded-lg text-zinc-400 hover:text-white hover:bg-brandOrange transition-all duration-300 overflow-hidden group/link">
+        <span class="relative z-10">CONTACT</span>
+      </a>
+    </nav>
+
+    <!-- Right: Integrated Actions -->
+    <div class="flex items-center gap-3">
+      <!-- Hardware SFX Node -->
+      <button id="sfxToggleBtn" onclick="toggleSFXState()" class="w-10 h-10 flex items-center justify-center font-mono text-xs font-bold border-2 border-brandBlack rounded-xl bg-brandWhite text-brandBlack hover:bg-brandPink hover:text-white shadow-[2px_2px_0_#0d0d0d] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all" title="Toggle Synthesizer System">
+        🔊
+      </button>
+
+      <!-- Fused Social Block -->
+      <div class="flex items-center bg-brandWhite border-2 border-brandBlack rounded-xl overflow-hidden shadow-[2px_2px_0_#0d0d0d] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all">
+        <a href="https://www.scaler.com/academy/profile/98f4c6861ad9" target="_blank" class="px-3 py-2.5 font-mono text-[11px] font-bold text-brandBlack hover:bg-brandYellow hover:text-brandBlack transition-colors border-r-2 border-brandBlack" title="Scaler Array">
+          SC
+        </a>
+        <a href="https://www.linkedin.com/in/sai-sindhu-chunduri-7b0023210/" target="_blank" class="px-3 py-2.5 font-mono text-[11px] font-bold text-brandBlack hover:bg-brandBlue hover:text-white transition-colors" title="LinkedIn Node">
+          IN
+        </a>
+      </div>
+
+      <!-- Kinetic Resume Button -->
+      <button onclick="openPostcard()" class="relative overflow-hidden flex items-center gap-2 bg-brandBlack text-brandWhite font-mono text-[10px] font-bold border-2 border-brandBlack h-10 px-5 rounded-xl shadow-[3px_3px_0_#ffe135] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] transition-all group/btn">
+        <span class="absolute inset-0 bg-brandYellow translate-y-[100%] group-hover/btn:translate-y-0 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"></span>
+        <span class="relative z-10 group-hover/btn:text-brandBlack flex items-center gap-2">
+          📄 RESUME <span class="block group-hover/btn:translate-y-0.5 transition-transform">↓</span>
+        </span>
+      </button>
+    </div>
+  </header>
+</div>
+
+<!-- DEDICATED MOBILE HEADER PILL -->
+<header id="mobileHeader" class="md:hidden fixed top-4 inset-x-4 z-50 flex items-center justify-between bg-brandWhite/90 backdrop-blur-md border-3 border-brandBlack shadow-[4px_4px_0_#0d0d0d] h-14 rounded-2xl px-3 overflow-hidden">
+  <!-- Mobile Progress Bar -->
+  <div class="absolute bottom-0 left-0 h-1 bg-brandBlack/10 w-full"></div>
+  <div id="mobileNavProgress" class="absolute bottom-0 left-0 h-1 bg-brandYellow z-10 transition-all duration-75"></div>
+  
+  <div class="flex items-center gap-2 relative z-20">
+    <a href="#hero" class="w-8 h-8 bg-brandBlack text-brandYellow font-display text-md flex items-center justify-center rounded-lg border-2 border-brandBlack shadow-[2px_2px_0_#ffe135] active:translate-x-0.5 active:translate-y-0.5 active:shadow-none transition-all">
+      SS
+    </a>
+    <span class="font-display text-xl text-brandBlack tracking-widest leading-none mt-1">SINDHU</span>
+  </div>
+  <button onclick="toggleMobileNav()" class="w-9 h-9 border-2 border-brandBlack bg-brandWhite text-brandBlack rounded-lg flex items-center justify-center hover:bg-brandYellow shadow-[2px_2px_0_#0d0d0d] active:shadow-none active:translate-x-0.5 active:translate-y-0.5 transition-all relative z-20" aria-label="Toggle Mobile Nav">
+    ☰
+  </button>
+</header>
+
+<!-- OVERLAY MASK FOR OUTSIDE CLICK ON MOBILE SLIDEOUT -->
+<div id="mobileNavOverlay" class="fixed inset-0 bg-brandBlack/40 backdrop-blur-sm z-30 opacity-0 pointer-events-none transition-opacity duration-300" onclick="toggleMobileNav(true)"></div>
+
+<!-- MOBILE NAVIGATION SLIDEOUT PANEL (Slide down from top) -->
+<div id="mobileNav" class="fixed inset-x-4 top-20 bg-brandWhite z-40 border-3 border-brandBlack shadow-[8px_8px_0_#0d0d0d] p-6 flex flex-col gap-3 transform -translate-y-[150%] transition-transform duration-400 ease-[cubic-bezier(0.175,0.885,0.32,1.275)] rounded-2xl">
+  <div class="flex justify-between items-center border-b-2 border-brandBlack pb-3 mb-2">
+    <span class="font-display text-xl text-brandBlack tracking-wider">NAV MATRIX</span>
+    <button onclick="toggleMobileNav()" class="font-mono text-xs font-bold border-2 border-brandBlack px-2.5 py-0.5 bg-brandRed text-white hover:bg-brandBlack hover:text-brandRed transition-colors rounded-full">CLOSE [X]</button>
+  </div>
+  <a href="#work" onclick="toggleMobileNav(true)" class="font-display text-xl text-brandBlack hover:bg-brandYellow border-2 border-brandBlack p-2.5 shadow-[3px_3px_0_#0d0d0d] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] bg-brandWhite transition-all flex justify-between items-center rounded-xl">
+    <span>WORK EXPERIENCE</span>
+    <span>→</span>
+  </a>
+  <a href="#projects" onclick="toggleMobileNav(true)" class="font-display text-xl text-brandBlack hover:bg-brandGreen border-2 border-brandBlack p-2.5 shadow-[3px_3px_0_#0d0d0d] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] bg-brandWhite transition-all flex justify-between items-center rounded-xl">
+    <span>PROJECTS GALLERY</span>
+    <span>→</span>
+  </a>
+  <a href="#skills" onclick="toggleMobileNav(true)" class="font-display text-xl text-brandBlack hover:bg-brandBlue hover:text-white border-2 border-brandBlack p-2.5 shadow-[3px_3px_0_#0d0d0d] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] bg-brandWhite transition-all flex justify-between items-center rounded-xl">
+    <span>STACK BOARD</span>
+    <span>→</span>
+  </a>
+  <a href="#contact" onclick="toggleMobileNav(true)" class="font-display text-xl text-brandBlack hover:bg-brandOrange hover:text-white border-2 border-brandBlack p-2.5 shadow-[3px_3px_0_#0d0d0d] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] bg-brandWhite transition-all flex justify-between items-center rounded-xl">
+    <span>GET IN TOUCH</span>
+    <span>→</span>
+  </a>
+  <button onclick="toggleMobileNav(true); openPostcard()" class="bg-brandYellow text-brandBlack font-mono font-bold py-3 text-center border-2 border-brandBlack shadow-[4px_4px_0_#0d0d0d] hover:shadow-none hover:translate-x-[4px] hover:translate-y-[4px] mt-2 text-xs tracking-wider hover:bg-brandBlack hover:text-brandYellow transition-all rounded-xl">
+    📄 RESUME / CONNECT ↗
+  </button>
+</div>
+
+<!-- MAIN PAGE CONTAINER (Extra padding top added to accommodate the floating rectangle header) -->
+<main class="max-w-7xl mx-auto px-4 sm:px-8 py-20 md:py-28 space-y-24 relative z-10">
+
+  <!-- HERO SECTION -->
+  <section id="hero" class="reveal-el brutalist-card overflow-hidden mt-12 md:mt-16">
+    <!-- Top Decorative Line -->
+    <div class="h-2 w-full" style="background: repeating-linear-gradient(90deg, var(--yellow) 0, var(--yellow) 20px, var(--black) 20px, var(--black) 40px);"></div>
+    
+    <div class="grid grid-cols-1 lg:grid-cols-12">
+      <!-- Left Panel -->
+      <div class="p-6 sm:p-10 lg:p-14 lg:col-span-8 border-b-3 lg:border-b-0 lg:border-r-3 border-brandBlack flex flex-col justify-between">
+        <div>
+          <!-- Status Banner -->
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-brandGreen text-brandBlack border-2 border-brandBlack font-mono text-[10px] font-bold uppercase tracking-wider shadow-[2px_2px_0_#0d0d0d] mb-6 rounded-full">
+            <span class="w-2.5 h-2.5 bg-brandBlack animate-ping rounded-full"></span>
+            ACTIVE OPPORTUNITIES ONLY
+          </div>
+          
+          <h1 class="font-display text-6xl sm:text-7xl md:text-8xl leading-none tracking-tight text-brandBlack">
+            SAI <span class="text-transparent" style="-webkit-text-stroke: 2.5px var(--black);">SINDHU</span>
+          </h1>
+          
+          <p class="font-mono text-xs text-zinc-600 mt-4 pl-4 border-l-4 border-brandRed uppercase tracking-wider font-bold">
+            Software Engineer &bull; Microservices &bull; Distributed Systems
+          </p>
+          
+          <p class="text-base sm:text-lg text-zinc-800 leading-relaxed max-w-2xl mt-6">
+            Designing and scaling enterprise distributed systems. Focused on building robust API ecosystems, real-time message architectures, and high-performance workflows.
+          </p>
+          
+          <!-- Premium Hero Badges -->
+          <div class="flex flex-wrap gap-2 mt-8">
+            <span class="font-mono text-[10px] font-bold uppercase border-2 border-brandBlack bg-brandYellow text-brandBlack px-3 py-1 shadow-[2px_2px_0_#000] rounded-full transition-transform hover:-translate-y-0.5">⚡ 3+ Years Exp.</span>
+            <span class="font-mono text-[10px] font-bold uppercase border-2 border-brandBlack bg-brandBlue text-white px-3 py-1 shadow-[2px_2px_0_#000] rounded-full transition-transform hover:-translate-y-0.5">🏢 Fortune 500 Experience</span>
+            <span class="font-mono text-[10px] font-bold uppercase border-2 border-brandBlack bg-brandGreen text-brandBlack px-3 py-1 shadow-[2px_2px_0_#000] rounded-full transition-transform hover:-translate-y-0.5">☕ Spring Boot</span>
+            <span class="font-mono text-[10px] font-bold uppercase border-2 border-brandBlack bg-brandPink text-white px-3 py-1 shadow-[2px_2px_0_#000] rounded-full transition-transform hover:-translate-y-0.5">⚙️ Apache Kafka</span>
+          </div>
+        </div>
+
+        <!-- Core Action Cluster (Two primary controls with magnetic physics) -->
+        <div class="flex flex-col sm:flex-row gap-4 mt-12 items-start sm:items-center">
+          <!-- View Work CTA -->
+          <a href="#work" class="group relative flex flex-col justify-between bg-brandYellow text-brandBlack border-3 border-brandBlack p-4 w-full sm:w-60 shadow-[4px_4px_0_#0d0d0d] hover:shadow-[8px_8px_0_#0d0d0d] hover:-translate-x-1 hover:-translate-y-1 active:translate-x-0.5 active:translate-y-0.5 transition-all text-left">
+            <div class="flex justify-between items-start w-full">
+              <span class="font-mono text-[10px] font-bold tracking-widest text-zinc-600 uppercase">💼 ENTERPRISE PORTFOLIO</span>
+            </div>
+            <div class="mt-4 flex items-center justify-between">
+              <div>
+                <span class="font-display text-2xl tracking-wide block leading-none">VIEW WORK</span>
+                <span class="font-mono text-[9px] text-zinc-500 font-bold block mt-1">Explore Experience &rarr;</span>
+              </div>
+              <span class="font-display text-4xl group-hover:translate-y-1 transition-transform duration-200">↓</span>
+            </div>
+          </a>
+
+          <!-- Interactive Hire CTA -->
+          <button onclick="openPostcard()" class="group bg-brandBlack text-brandWhite border-3 border-brandBlack p-5 w-full sm:w-60 shadow-[4px_4px_0_#000] hover:shadow-[8px_8px_0_#ffe135] hover:-translate-x-1 hover:-translate-y-1 transition-all flex justify-between items-center text-left">
+            <div>
+              <span class="font-mono text-[9px] text-brandYellow font-bold block tracking-widest uppercase mb-1">Let's Build Something</span>
+              <span class="font-display text-3xl leading-none">HIRE ME NOW</span>
+            </div>
+            <span class="font-display text-4xl group-hover:translate-x-2 transition-transform duration-200">&rarr;</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Right Panel: Business Card & Meta -->
+      <div class="lg:col-span-4 flex flex-col justify-between bg-brandWhite/40">
+        <!-- Interactive 3D Business Card Holder -->
+        <div class="p-8 flex items-center justify-center border-b-3 border-brandBlack">
+          <div class="card-3d-wrap group" id="bizCard" onclick="flipBizCard()">
+            <div class="card-3d-inner">
+              <!-- FRONT -->
+              <div class="card-3d-front">
+                <div class="flex justify-between items-start">
+                  <span class="font-display text-3xl tracking-widest">SINDHU.DEV</span>
+                  <span class="font-mono text-[9px] font-bold bg-brandBlack text-brandYellow px-2 py-0.5 rounded-full">TAP TO FLIP</span>
+                </div>
+                <div>
+                  <h3 class="font-display text-4xl leading-none">SAI SINDHU</h3>
+                  <p class="font-mono text-[10px] uppercase font-bold tracking-wider text-zinc-700 mt-1">Software Engineer</p>
+                </div>
+                <div class="flex justify-between items-end border-t border-brandBlack pt-2 mt-2">
+                  <span class="font-mono text-[8px] text-zinc-600">AT&amp;T &bull; MAERSK</span>
+                  <span class="font-mono text-[8px] text-zinc-600">CLICK TO FLIP &rarr;</span>
+                </div>
+              </div>
+              <!-- BACK -->
+              <div class="card-3d-back">
+                <div class="flex justify-between items-start">
+                  <span class="font-display text-2xl tracking-widest text-brandYellow">CONTACT</span>
+                  <span class="font-mono text-[9px] text-zinc-400">TAP TO BACK</span>
+                </div>
+                <div class="space-y-1.5 font-mono text-[9px] text-zinc-300">
+                  <p>✉ saisindhuchunduri@gmail.com</p>
+                  <p>📞 +91 87904 82099</p>
+                  <p class="break-all">💼 linkedin.com/in/sai-sindhu-chunduri-7b0023210</p>
+                  <p class="break-all">🎯 scaler.com/academy/profile/98f4c6861ad9</p>
+                </div>
+                <div class="flex justify-between items-end mt-2">
+                  <div class="w-10 h-10 bg-brandWhite p-0.5 border border-brandBlack shrink-0">
+                    <svg viewBox="0 0 100 100" class="w-full h-full text-black fill-current"><path d="M0,0 h30 v30 h-30 z M70,0 h30 v30 h-30 z M0,70 h30 v30 h-30 z M40,40 h20 v20 h-20 z M15,15 h1 v1 h-1 z M85,15 h1 v1 h-1 z M15,85 h1 v1 h-1 z"/></svg>
+                  </div>
+                  <span class="text-[8px] text-zinc-400 pl-2 text-right">Verifiable Contact Card</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Recruiter Meta Stack (No overlaps, alternating high contrast container colors) -->
+        <div class="p-6 md:p-8 space-y-4 bg-brandWhite">
+          <div class="flex items-center gap-4">
+            <div class="w-10 h-10 bg-brandBlack text-brandWhite flex items-center justify-center font-bold text-sm border-2 border-brandBlack shadow-[2px_2px_0_#0d0d0d] rounded-full shrink-0">📍</div>
+            <div>
+              <p class="font-mono text-[9px] text-zinc-400 font-bold uppercase tracking-wider">Location</p>
+              <p class="font-bold text-sm text-brandBlack">Andhra Pradesh, India</p>
+            </div>
+          </div>
+          
+          <div class="flex items-center gap-4">
+            <!-- White high contrast container backbreaking black sequence -->
+            <div class="w-10 h-10 bg-brandWhite text-brandBlack flex items-center justify-center font-bold text-sm border-2 border-brandBlack shadow-[2px_2px_0_#0d0d0d] rounded-full shrink-0">🏢</div>
+            <div>
+              <p class="font-mono text-[9px] text-zinc-400 font-bold uppercase tracking-wider">Current / Former</p>
+              <p class="font-bold text-sm text-brandBlack">AT&amp;T / Maersk Global</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-4">
+            <div class="w-10 h-10 bg-brandBlack text-brandWhite flex items-center justify-center font-bold text-sm border-2 border-brandBlack shadow-[2px_2px_0_#0d0d0d] rounded-full shrink-0">🎓</div>
+            <div>
+              <p class="font-mono text-[9px] text-zinc-400 font-bold uppercase tracking-wider">Education</p>
+              <p class="font-bold text-sm text-brandBlack">B.Tech IT &bull; GPA 8.8</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MINI ACHIEVEMENT METRICS -->
+  <section class="reveal-el space-y-6">
+    <div class="sec-label">RECRUITER METRIC STACKS</div>
+    
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 border-3 border-brandBlack shadow-xl bg-brandBlack gap-0.5">
+      
+      <div class="p-6 text-center bg-brandWhite flex flex-col justify-center items-center group hover:bg-brandYellow transition-colors duration-200">
+        <span class="text-2xl mb-1">⏳</span>
+        <span class="font-display text-4xl sm:text-5xl" id="stat-years">0</span>
+        <span class="font-mono text-[9px] text-zinc-500 font-bold uppercase tracking-wider mt-1">Years Exp.</span>
+      </div>
+      
+      <div class="p-6 text-center bg-brandWhite flex flex-col justify-center items-center group hover:bg-brandGreen transition-colors duration-200">
+        <span class="text-2xl mb-1">🏢</span>
+        <span class="font-display text-4xl sm:text-5xl" id="stat-f500">0</span>
+        <span class="font-mono text-[9px] text-zinc-500 font-bold uppercase tracking-wider mt-1">Fortune 500</span>
+      </div>
+
+      <div class="p-6 text-center bg-brandWhite flex flex-col justify-center items-center group hover:bg-brandBlue hover:text-white transition-all duration-200">
+        <span class="text-2xl mb-1">📋</span>
+        <span class="font-display text-4xl sm:text-5xl" id="stat-reuse">0</span>
+        <span class="font-mono text-[9px] text-zinc-400 font-bold uppercase tracking-wider mt-1">Template Reuse</span>
+      </div>
+
+      <div class="p-6 text-center bg-brandWhite flex flex-col justify-center items-center group hover:bg-brandPink hover:text-white transition-all duration-200">
+        <span class="text-2xl mb-1">⚡</span>
+        <span class="font-display text-4xl sm:text-5xl" id="stat-alert">0</span>
+        <span class="font-mono text-[9px] text-zinc-400 font-bold uppercase tracking-wider mt-1">Alert Response</span>
+      </div>
+
+      <div class="p-6 text-center bg-brandWhite flex flex-col justify-center items-center group hover:bg-brandOrange hover:text-white transition-all duration-200 col-span-2 md:col-span-1">
+        <span class="text-2xl mb-1">🚢</span>
+        <span class="font-display text-4xl sm:text-5xl" id="stat-booking">0</span>
+        <span class="font-mono text-[9px] text-zinc-400 font-bold uppercase tracking-wider mt-1">Booking Accuracy</span>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- NON-OVERFLOWING MARQUEE (Optimized single instance items) -->
+  <section class="reveal-el">
+    <div class="marquee-container">
+      <div class="marquee-track" id="marqueeTrack">
+        <span class="mq-item text-brandYellow">Spring Boot <span class="w-2.5 h-2.5 bg-brandYellow rotate-45 ml-1"></span></span>
+        <span class="mq-item text-brandGreen">Java Enterprise <span class="w-2.5 h-2.5 bg-brandGreen rotate-45 ml-1"></span></span>
+        <span class="mq-item text-brandRed">Apache Kafka <span class="w-2.5 h-2.5 bg-brandRed rotate-45 ml-1"></span></span>
+        <span class="mq-item text-brandBlue">Golang Microservices <span class="w-2.5 h-2.5 bg-brandBlue rotate-45 ml-1"></span></span>
+        <span class="mq-item text-brandOrange">Kubernetes <span class="w-2.5 h-2.5 bg-brandOrange rotate-45 ml-1"></span></span>
+        <span class="mq-item text-brandPink">Azure Cloud <span class="w-2.5 h-2.5 bg-brandPink rotate-45 ml-1"></span></span>
+        <span class="mq-item text-brandWhite">React.js Frontend <span class="w-2.5 h-2.5 bg-brandWhite rotate-45 ml-1"></span></span>
+        <span class="mq-item text-brandYellow">PostgreSQL DB <span class="w-2.5 h-2.5 bg-brandYellow rotate-45 ml-1"></span></span>
+        <span class="mq-item text-brandGreen">Grafana Dashboards <span class="w-2.5 h-2.5 bg-brandGreen rotate-45 ml-1"></span></span>
+        <span class="mq-item text-brandRed">Prometheus <span class="w-2.5 h-2.5 bg-brandRed rotate-45 ml-1"></span></span>
+        <span class="mq-item text-brandBlue">Temporal Workflows <span class="w-2.5 h-2.5 bg-brandBlue rotate-45 ml-1"></span></span>
+        <span class="mq-item text-brandOrange">Generative AI <span class="w-2.5 h-2.5 bg-brandOrange rotate-45 ml-1"></span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTEGRATED PREMIUM HIGH-CONTRAST QUOTE BLOCK -->
+  <section class="reveal-el">
+    <div class="brutalist-card p-8 sm:p-12 md:p-16 bg-brandBlack text-brandWhite relative overflow-hidden">
+      <!-- Watermark quote glyphs -->
+      <div class="absolute -top-4 left-6 font-display text-[160px] text-zinc-800 opacity-20 select-none leading-none">“</div>
+      
+      <h2 class="font-display text-3xl sm:text-4xl md:text-5xl leading-tight tracking-wide text-brandWhite uppercase relative z-10">
+        I BUILD <span class="text-brandYellow">SYSTEMS THAT SCALE</span> — CONTRACT LIFECYCLE ENGINES, REAL-TIME EVENT STREAMS, <span class="text-brandYellow">ENTERPRISE INFRASTRUCTURE.</span>
+      </h2>
+      
+      <p class="font-mono text-[9px] sm:text-[11px] text-zinc-400 font-bold uppercase tracking-widest mt-8 relative z-10 flex items-center gap-2">
+        <span class="w-2 h-2 bg-brandRed rounded-full animate-pulse shrink-0"></span>
+        — SAI SINDHU CHUNDURI &bull; SOFTWARE ENGINEER &bull; AT&amp;T &amp; MAERSK
+      </p>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE SECTION -->
+  <section id="work" class="reveal-el space-y-8">
+    <div class="sec-label">WORK EXPERIENCE</div>
+
+    <div class="space-y-12">
+      <!-- AT&T (Location fixed to Hyderabad as per instructions) - DESKTOP VIEW ONLY -->
+      <div class="brutalist-card overflow-hidden hidden md:block">
+        <div class="flex flex-col md:flex-row md:items-stretch border-b-3 border-brandBlack bg-brandBlack text-brandWhite">
+          <div class="p-6 flex items-center gap-4 flex-grow">
+            <div class="w-12 h-12 bg-brandBlue text-white font-display text-xl font-bold flex items-center justify-center border-2 border-white rounded-xl shrink-0">
+              AT
+            </div>
+            <div>
+              <h3 class="font-display text-3xl tracking-wide text-brandYellow">AT&amp;T</h3>
+              <p class="font-mono text-[10px] uppercase tracking-wider text-zinc-400">Software Engineer &bull; Microservices &amp; Infrastructure</p>
+            </div>
+          </div>
+          <div class="p-6 flex items-center justify-start md:justify-center bg-brandYellow text-brandBlack font-mono text-xs font-bold border-t-3 md:border-t-0 md:border-l-3 border-brandBlack shrink-0">
+            SEP 2024 — PRESENT &bull; HYDERABAD
+          </div>
+        </div>
+
+        <div class="p-8 space-y-6">
+          <div>
+            <h4 class="font-display text-2xl tracking-wide text-brandBlack pl-4 border-l-4 border-brandRed">CONTRACT LIFECYCLE MANAGEMENT</h4>
+            <ul class="list-none space-y-3 mt-4 text-sm text-zinc-700">
+              <li class="relative pl-6 before:content-['▶'] before:absolute before:left-0 before:text-brandRed before:text-[9px] before:top-1.5">
+                Engineered robust <strong>Template &amp; Clause Management Microservices</strong> utilizing Spring Boot, implementing meticulous version governance which increased clause reuse architecture by <strong>40%</strong>.
+              </li>
+              <li class="relative pl-6 before:content-['▶'] before:absolute before:left-0 before:text-brandRed before:text-[9px] before:top-1.5">
+                Coordinated with Salesforce APIs, automated signature pipelines, and payment processors through resilient transactional patterns and secure REST configurations.
+              </li>
+              <li class="relative pl-6 before:content-['▶'] before:absolute before:left-0 before:text-brandRed before:text-[9px] before:top-1.5">
+                Designed index strategies and optimized complex Spring Data JPA integrations to cut system query latencies by <strong>30%</strong>.
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="font-display text-2xl tracking-wide text-brandBlack pl-4 border-l-4 border-brandRed mt-6">ENTERPRISE INFRASTRUCTURE SYSTEM (EIS)</h4>
+            <ul class="list-none space-y-3 mt-4 text-sm text-zinc-700">
+              <li class="relative pl-6 before:content-['▶'] before:absolute before:left-0 before:text-brandRed before:text-[9px] before:top-1.5">
+                Drove architecture modifications resulting in severe vulnerability mitigation and optimized static inspection quality within enterprise SonarQube dashboards.
+              </li>
+              <li class="relative pl-6 before:content-['▶'] before:absolute before:left-0 before:text-brandRed before:text-[9px] before:top-1.5">
+                Architected high-density relational processes, stored routines, and PL/SQL procedures inside core high-availability Oracle clusters.
+              </li>
+            </ul>
+          </div>
+
+          <div class="flex flex-wrap gap-2 pt-4 border-t border-zinc-200">
+            <span class="px-3 py-1 bg-brandWhite border-2 border-brandBlack font-mono text-[10px] font-bold shadow-[2px_2px_0_#000] uppercase rounded-full">Spring Boot</span>
+            <span class="px-3 py-1 bg-brandWhite border-2 border-brandBlack font-mono text-[10px] font-bold shadow-[2px_2px_0_#000] uppercase rounded-full">Java</span>
+            <span class="px-3 py-1 bg-brandWhite border-2 border-brandBlack font-mono text-[10px] font-bold shadow-[2px_2px_0_#000] uppercase rounded-full">Oracle SQL</span>
+            <span class="px-3 py-1 bg-brandWhite border-2 border-brandBlack font-mono text-[10px] font-bold shadow-[2px_2px_0_#000] uppercase rounded-full">SonarQube</span>
+            <span class="px-3 py-1 bg-brandWhite border-2 border-brandBlack font-mono text-[10px] font-bold shadow-[2px_2px_0_#000] uppercase rounded-full">GenAI</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- AT&T MOBILE PREVIEW CARD (Visible on small screens only) -->
+      <div class="brutalist-card overflow-hidden md:hidden hover:bg-brandYellow/5 transition-colors cursor-pointer group" onclick="openExperienceModal('att')">
+        <div class="flex items-center gap-4 p-5 bg-brandBlack text-brandWhite border-b-3 border-brandBlack">
+          <div class="w-10 h-10 bg-brandBlue text-white font-display text-lg font-bold flex items-center justify-center border-2 border-white rounded-xl shrink-0">
+            AT
+          </div>
+          <div>
+            <h3 class="font-display text-2xl tracking-wide text-brandYellow">AT&amp;T</h3>
+            <p class="font-mono text-[9px] uppercase tracking-widest text-zinc-400">Software Engineer</p>
+          </div>
+        </div>
+        <div class="p-5 flex flex-col justify-between">
+          <div class="flex justify-between items-center text-xs font-mono text-zinc-500 mb-4">
+            <span>SEP 2024 — PRESENT</span>
+            <span class="text-brandBlack font-bold">📍 HYD</span>
+          </div>
+          <button class="w-full bg-brandYellow hover:bg-brandBlack hover:text-brandYellow text-brandBlack font-mono text-xs font-bold py-3 border-2 border-brandBlack shadow-[3px_3px_0_#0d0d0d] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all rounded-xl">
+            📄 VIEW DETAIL STATS [→]
+          </button>
+        </div>
+      </div>
+
+      <!-- MAERSK - DESKTOP VIEW ONLY -->
+      <div class="brutalist-card overflow-hidden hidden md:block">
+        <div class="flex flex-col md:flex-row md:items-stretch border-b-3 border-brandBlack bg-brandBlack text-brandWhite">
+          <div class="p-6 flex items-center gap-4 flex-grow">
+            <div class="w-12 h-12 bg-white text-brandBlack font-display text-xl font-bold flex items-center justify-center border-2 border-brandBlack rounded-xl shrink-0">
+              M
+            </div>
+            <div>
+              <h3 class="font-display text-3xl tracking-wide text-brandYellow">MAERSK GLOBAL</h3>
+              <p class="font-mono text-[10px] uppercase tracking-wider text-zinc-400">Associate Software Engineer &bull; Logistics Orchestration</p>
+            </div>
+          </div>
+          <div class="p-6 flex items-center justify-start md:justify-center bg-brandRed text-brandWhite font-mono text-xs font-bold border-t-3 md:border-t-0 md:border-l-3 border-brandBlack shrink-0">
+            AUG 2022 — JUN 2024 &bull; BANGALORE
+          </div>
+        </div>
+
+        <div class="p-8 space-y-6">
+          <div>
+            <h4 class="font-display text-2xl tracking-wide text-brandBlack pl-4 border-l-4 border-brandRed">ORDER HANDLING &amp; BOOKING ORCHESTRATION</h4>
+            <ul class="list-none space-y-3 mt-4 text-sm text-zinc-700">
+              <li class="relative pl-6 before:content-['▶'] before:absolute before:left-0 before:text-brandRed before:text-[9px] before:top-1.5">
+                Programmed <strong>Instant Self-Service Booking workflows</strong> leveraging Temporal engine integration, scaling logistic transaction accuracy by <strong>50%</strong>.
+              </li>
+              <li class="relative pl-6 before:content-['▶'] before:absolute before:left-0 before:text-brandRed before:text-[9px] before:top-1.5">
+                Designed weight capacity APIs using Java reactive models to handle high-frequency concurrent verification requests.
+              </li>
+              <li class="relative pl-6 before:content-['▶'] before:absolute before:left-0 before:text-brandRed before:text-[9px] before:top-1.5">
+                Pioneered high-velocity REST structures, elevating baseline transaction throughput indicators by over <strong>20%</strong>.
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="font-display text-2xl tracking-wide text-brandBlack pl-4 border-l-4 border-brandRed mt-6">EVENT LOGGING GATEWAY</h4>
+            <ul class="list-none space-y-3 mt-4 text-sm text-zinc-700">
+              <li class="relative pl-6 before:content-['▶'] before:absolute before:left-0 before:text-brandRed before:text-[9px] before:top-1.5">
+                Engineered custom <strong>Go microservices</strong> for self-service event tracking, enabling visual interaction and debugging across Kafka distributed hubs.
+              </li>
+              <li class="relative pl-6 before:content-['▶'] before:absolute before:left-0 before:text-brandRed before:text-[9px] before:top-1.5">
+                Streamlined Grafana dashboard monitoring hooks, cutting MTTR (Mean Time to Resolution) metrics by up to <strong>75%</strong>.
+              </li>
+            </ul>
+          </div>
+
+          <div class="flex flex-wrap gap-2 pt-4 border-t border-zinc-200">
+            <span class="px-3 py-1 bg-brandWhite border-2 border-brandBlack font-mono text-[10px] font-bold shadow-[2px_2px_0_#000] uppercase rounded-full">Go</span>
+            <span class="px-3 py-1 bg-brandWhite border-2 border-brandBlack font-mono text-[10px] font-bold shadow-[2px_2px_0_#000] uppercase rounded-full">Apache Kafka</span>
+            <span class="px-3 py-1 bg-brandWhite border-2 border-brandBlack font-mono text-[10px] font-bold shadow-[2px_2px_0_#000] uppercase rounded-full">Temporal</span>
+            <span class="px-3 py-1 bg-brandWhite border-2 border-brandBlack font-mono text-[10px] font-bold shadow-[2px_2px_0_#000] uppercase rounded-full">Grafana</span>
+            <span class="px-3 py-1 bg-brandWhite border-2 border-brandBlack font-mono text-[10px] font-bold shadow-[2px_2px_0_#000] uppercase rounded-full">Java</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- MAERSK MOBILE PREVIEW CARD (Visible on small screens only) -->
+      <div class="brutalist-card overflow-hidden md:hidden hover:bg-brandRed/5 transition-colors cursor-pointer group" onclick="openExperienceModal('maersk')">
+        <div class="flex items-center gap-4 p-5 bg-brandBlack text-brandWhite border-b-3 border-brandBlack">
+          <div class="w-10 h-10 bg-white text-brandBlack font-display text-lg font-bold flex items-center justify-center border-2 border-brandBlack rounded-xl shrink-0">
+            M
+          </div>
+          <div>
+            <h3 class="font-display text-2xl tracking-wide text-brandYellow">MAERSK GLOBAL</h3>
+            <p class="font-mono text-[9px] uppercase tracking-widest text-zinc-400">Associate Software Engineer</p>
+          </div>
+        </div>
+        <div class="p-5 flex flex-col justify-between">
+          <div class="flex justify-between items-center text-xs font-mono text-zinc-500 mb-4">
+            <span>AUG 2022 — JUN 2024</span>
+            <span class="text-brandBlack font-bold">📍 BLR</span>
+          </div>
+          <button class="w-full bg-brandRed hover:bg-brandBlack hover:text-brandRed text-white font-mono text-xs font-bold py-3 border-2 border-brandBlack shadow-[3px_3px_0_#0d0d0d] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all rounded-xl">
+            📄 VIEW DETAIL STATS [→]
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SELECTED PROJECTS -->
+  <section id="projects" class="reveal-el space-y-8">
+    <div class="sec-label">SELECTED PROJECTS</div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <!-- Project 1 -->
+      <div class="brutalist-card p-8 flex flex-col justify-between bg-brandWhite min-h-[420px]">
+        <div>
+          <div class="flex items-center justify-between mb-4 border-b-2 border-brandBlack pb-3">
+            <span class="font-mono text-[11px] font-bold text-zinc-400">01 / AT&amp;T</span>
+            <span class="px-2 py-0.5 bg-brandBlue text-white border border-brandBlack font-mono text-[9px] font-bold rounded-none">ACTIVE PROD</span>
+          </div>
+          <h3 class="font-display text-3xl text-brandBlack mb-4">CONTRACT GENERATION ENGINE</h3>
+          
+          <div class="space-y-3 text-xs mb-6">
+            <p><strong class="font-mono text-[10px] text-brandRed font-bold uppercase block tracking-wider">Problem Statement:</strong> Manual generation models induced legal inconsistencies and compilation errors.</p>
+            <p><strong class="font-mono text-[10px] text-brandBlue font-bold uppercase block tracking-wider">Solution Implemented:</strong> Constructed a flexible Spring Boot microservice compiling complex agreements based on live customer inputs.</p>
+            <p><strong class="font-mono text-[10px] text-brandGreen font-bold uppercase block tracking-wider">Impact Achieved:</strong> Accelerated document compilation metrics by 40% while ensuring complete regulatory audit scores.</p>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-1.5 pt-4 border-t border-zinc-200">
+          <span class="px-2 py-0.5 bg-brandWhite border-2 border-brandBlack font-mono text-[9px] font-bold shadow-[1.5px_1.5px_0_#000]">SPRING BOOT</span>
+          <span class="px-2 py-0.5 bg-brandWhite border-2 border-brandBlack font-mono text-[9px] font-bold shadow-[1.5px_1.5px_0_#000]">HIBERNATE</span>
+          <span class="px-2 py-0.5 bg-brandWhite border-2 border-brandBlack font-mono text-[9px] font-bold shadow-[1.5px_1.5px_0_#000]">ORACLE</span>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="brutalist-card p-8 flex flex-col justify-between bg-brandYellow min-h-[420px]">
+        <div>
+          <div class="flex items-center justify-between mb-4 border-b-2 border-brandBlack pb-3">
+            <span class="font-mono text-[11px] font-bold text-brandBlack/60">02 / MAERSK</span>
+            <span class="px-2 py-0.5 bg-brandBlack text-brandWhite border border-brandBlack font-mono text-[9px] font-bold rounded-none">INFRASTRUCTURE</span>
+          </div>
+          <h3 class="font-display text-3xl text-brandBlack mb-4">KAFKA SELF-SERVICE</h3>
+          
+          <div class="space-y-3 text-xs mb-6">
+            <p><strong class="font-mono text-[10px] text-brandRed font-bold uppercase block tracking-wider">Problem Statement:</strong> Debugging stream discrepancies was severely bottlenecked by ticket delays.</p>
+            <p><strong class="font-mono text-[10px] text-brandBlue font-bold uppercase block tracking-wider">Solution Implemented:</strong> Designed custom Go microservices offering self-service event interaction inside Kafka hubs.</p>
+            <p><strong class="font-mono text-[10px] text-brandGreen font-bold uppercase block tracking-wider">Impact Achieved:</strong> Drastically lowered MTTR metrics by 75% for developers debugging logs on production clusters.</p>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-1.5 pt-4 border-t border-brandBlack/20">
+          <span class="px-2 py-0.5 bg-brandWhite border-2 border-brandBlack font-mono text-[9px] font-bold shadow-[1.5px_1.5px_0_#000]">GOLANG</span>
+          <span class="px-2 py-0.5 bg-brandWhite border-2 border-brandBlack font-mono text-[9px] font-bold shadow-[1.5px_1.5px_0_#000]">KAFKA</span>
+          <span class="px-2 py-0.5 bg-brandWhite border-2 border-brandBlack font-mono text-[9px] font-bold shadow-[1.5px_1.5px_0_#000]">GRAFANA</span>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="brutalist-card p-8 flex flex-col justify-between bg-brandWhite min-h-[420px]">
+        <div>
+          <div class="flex items-center justify-between mb-4 border-b-2 border-brandBlack pb-3">
+            <span class="font-mono text-[11px] font-bold text-zinc-400">03 / MAERSK</span>
+            <span class="px-2 py-0.5 bg-brandGreen text-brandBlack border border-brandBlack font-mono text-[9px] font-bold rounded-none">CORE SERVICE</span>
+          </div>
+          <h3 class="font-display text-3xl text-brandBlack mb-4">INSTANT BOOKING PLATFORM</h3>
+          
+          <div class="space-y-3 text-xs mb-6">
+            <p><strong class="font-mono text-[10px] text-brandRed font-bold uppercase block tracking-wider">Problem Statement:</strong> Heavy container over-allocation triggered shipping delays and revenue penalties.</p>
+            <p><strong class="font-mono text-[10px] text-brandBlue font-bold uppercase block tracking-wider">Solution Implemented:</strong> Implemented Temporal scheduling engines coupled with reactive Java checking APIs.</p>
+            <p><strong class="font-mono text-[10px] text-brandGreen font-bold uppercase block tracking-wider">Impact Achieved:</strong> Enforced automated capacity bounds, lifting total container logging accuracy to 50%.</p>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-1.5 pt-4 border-t border-zinc-200">
+          <span class="px-2 py-0.5 bg-brandWhite border-2 border-brandBlack font-mono text-[9px] font-bold shadow-[1.5px_1.5px_0_#000]">TEMPORAL</span>
+          <span class="px-2 py-0.5 bg-brandWhite border-2 border-brandBlack font-mono text-[9px] font-bold shadow-[1.5px_1.5px_0_#000]">JAVA</span>
+          <span class="px-2 py-0.5 bg-brandWhite border-2 border-brandBlack font-mono text-[9px] font-bold shadow-[1.5px_1.5px_0_#000]">REACTIVE</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECHNICAL STACK (Draggable Tag Board) -->
+  <section id="skills" class="reveal-el space-y-6">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div class="sec-label">INTERACTIVE STACK BOARD</div>
+      <p class="font-mono text-xs text-zinc-500 font-bold uppercase tracking-wider">Click &amp; throw blocks to test the micro physics engine &darr;</p>
+    </div>
+
+    <!-- Draggable Area -->
+    <div id="skillsBoard" class="relative select-none">
+      <div class="absolute bottom-4 right-4 font-mono text-[9px] text-zinc-400 font-bold uppercase tracking-widest pointer-events-none select-none">
+        DRAGGABLE PHYSICAL SPACE
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS GRID -->
+  <section id="certifications" class="reveal-el space-y-6">
+    <div class="sec-label">PROFESSIONAL CREDENTIALS</div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Cert 1 -->
+      <div class="brutalist-card p-6 flex flex-col justify-between bg-brandWhite relative overflow-hidden group min-h-[180px]">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 bg-brandYellow border-2 border-brandBlack flex items-center justify-center font-bold text-2xl shadow-[2px_2px_0_#0d0d0d] rounded-xl shrink-0">
+            🐍
+          </div>
+          <div>
+            <span class="font-mono text-[9px] text-zinc-400 font-bold uppercase tracking-wider block">Microsoft Tech Associate</span>
+            <h4 class="font-display text-2xl text-brandBlack leading-tight">PYTHON CERTIFIED</h4>
+          </div>
+        </div>
+        <div class="flex items-center justify-between border-t border-zinc-200 pt-4 mt-6">
+          <span class="font-mono text-xs font-bold text-brandGreen">✓ VERIFIED BADGE</span>
+          <span class="font-mono text-xs text-zinc-400 font-bold">2020</span>
+        </div>
+      </div>
+
+      <!-- Cert 2 -->
+      <div class="brutalist-card p-6 flex flex-col justify-between bg-brandWhite relative overflow-hidden group min-h-[180px]">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 bg-brandOrange text-white border-2 border-brandBlack flex items-center justify-center font-mono text-xl font-bold shadow-[2px_2px_0_#0d0d0d] rounded-xl shrink-0">
+            JS
+          </div>
+          <div>
+            <span class="font-mono text-[9px] text-zinc-400 font-bold uppercase tracking-wider block">Microsoft Tech Associate</span>
+            <h4 class="font-display text-2xl text-brandBlack leading-tight">JAVASCRIPT CERTIFIED</h4>
+          </div>
+        </div>
+        <div class="flex items-center justify-between border-t border-zinc-200 pt-4 mt-6">
+          <span class="font-mono text-xs font-bold text-brandGreen">✓ VERIFIED BADGE</span>
+          <span class="font-mono text-xs text-zinc-400 font-bold">2020</span>
+        </div>
+      </div>
+
+      <!-- Cert 3 -->
+      <div class="brutalist-card p-6 flex flex-col justify-between bg-brandWhite relative overflow-hidden group min-h-[180px]">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 bg-brandPink text-white border-2 border-brandBlack flex items-center justify-center font-bold text-2xl shadow-[2px_2px_0_#0d0d0d] rounded-xl shrink-0">
+            🤖
+          </div>
+          <div>
+            <span class="font-mono text-[9px] text-zinc-400 font-bold uppercase tracking-wider block">AT&amp;T Training Portal</span>
+            <h4 class="font-display text-2xl text-brandBlack leading-tight">GENERATIVE AI &amp; LLMS</h4>
+          </div>
+        </div>
+        <div class="flex items-center justify-between border-t border-zinc-200 pt-4 mt-6">
+          <span class="font-mono text-xs font-bold text-brandBlue">✓ VERIFIED RECORD</span>
+          <span class="font-mono text-xs text-zinc-400 font-bold">2025</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION SECTION -->
+  <section class="reveal-el space-y-6">
+    <div class="sec-label">ACADEMIC TIMELINE</div>
+
+    <div class="brutalist-card overflow-hidden grid grid-cols-1 lg:grid-cols-12">
+      <div class="lg:col-span-1 bg-brandRed min-h-[16px] lg:min-h-full" style="background: repeating-linear-gradient(180deg, var(--red) 0, var(--red) 16px, var(--black) 16px, var(--black) 32px);"></div>
+      
+      <div class="p-8 lg:col-span-8 flex flex-col justify-center">
+        <span class="font-mono text-xs text-brandRed font-bold tracking-widest uppercase">BACHELOR OF TECHNOLOGY</span>
+        <h3 class="font-display text-4xl text-brandBlack mt-1 leading-tight">INFORMATION TECHNOLOGY</h3>
+        <p class="font-mono text-xs text-zinc-500 uppercase tracking-wider mt-2">ADITYA ENGINEERING COLLEGE &bull; ANDHRA PRADESH</p>
+        
+        <div class="flex flex-wrap gap-2 mt-6">
+          <span class="px-3 py-1 bg-brandWhite border-2 border-brandBlack font-mono text-[10px] font-bold shadow-[2px_2px_0_#000]">CLASS OF 2022</span>
+          <span class="px-3 py-1 bg-brandBlack text-brandWhite border-2 border-brandBlack font-mono text-[10px] font-bold shadow-[2px_2px_0_#000]">GRADUATED WITH DISTINCTION</span>
+        </div>
+      </div>
+
+      <div class="lg:col-span-3 bg-brandYellow p-8 border-t-3 lg:border-t-0 lg:border-l-3 border-brandBlack flex flex-col items-center justify-center text-center">
+        <span class="font-display text-7xl text-brandBlack leading-none">8.8</span>
+        <span class="font-mono text-xs text-brandBlack/60 font-bold uppercase tracking-wider mt-2">GPA SCORE</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SIGNATURE EMOTIONAL POSTCARD SECTION -->
+  <section id="postcardSection" class="reveal-el space-y-8 scroll-mt-24">
+    <div class="sec-label">✉ A Note For You</div>
+
+    <div class="postcard-container">
+      <div class="postcard-inner" id="postcardInner" onclick="handleCardClick(event)">
+        
+        <!-- POSTCARD FRONT SIDE -->
+        <div class="postcard-front relative p-5 sm:p-8 flex flex-col justify-between min-h-[560px] sm:min-h-[480px] md:min-h-[420px]">
+          <div class="paper-texture"></div>
+          
+          <div class="flex justify-between items-start border-b border-brandBlack/10 pb-4">
+            <span class="font-mono text-[10px] font-bold text-brandBlue tracking-wider">CORRESPONDENCE MATRIX</span>
+            <button onclick="toggleCardFlip()" class="font-mono text-[9px] font-bold border-2 border-brandBlack px-2.5 py-0.5 bg-brandYellow shadow-[2px_2px_0_#000] rounded-full hover:bg-brandBlack hover:text-brandYellow transition-colors">
+              🔄 CLICK TO FLIP
+            </button>
+          </div>
+
+          <!-- Typewriter content area -->
+          <div class="my-4 flex-grow flex flex-col justify-center">
+            <div id="postcardTypewriter" class="font-handwritten text-lg sm:text-xl text-zinc-800 leading-relaxed min-h-[140px]"></div>
+            
+            <div class="mt-3 flex items-center gap-3">
+              <span id="postcardSignature" onclick="handleSignatureClick()" class="font-signature text-5xl text-brandBlue opacity-0 select-none hover:scale-105 transition-transform duration-300">Sindhu</span>
+              <span id="sigBlink" class="typewriter-cursor hidden"></span>
+            </div>
+          </div>
+
+          <!-- Postcard Front Footer Actions -->
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 border-t border-brandBlack/10 pt-4">
+            <button onclick="openPostcard()" class="bg-brandBlack text-brandWhite font-mono text-xs font-bold py-3 px-6 border-2 border-brandBlack shadow-[3px_3px_0_#ffe135] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] transition-all rounded-xl text-center">
+              Let's Build Something Together &rarr;
+            </button>
+
+            <!-- Premium CV Trigger element -->
+            <button onclick="mockDownloadResume()" class="relative flex flex-col items-start bg-brandYellow hover:bg-brandBlack hover:text-brandYellow text-brandBlack font-mono border-2 border-brandBlack px-4 py-1.5 rounded-xl shadow-[3px_3px_0_#0d0d0d] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all group">
+              <span class="text-[8px] font-bold text-zinc-500 uppercase">📄 Resume &bull; Updated 2026</span>
+              <span class="text-xs font-bold mt-0.5 flex items-center gap-1">Download CV <span class="inline-block group-hover:translate-y-0.5 transition-transform">↓</span></span>
+            </button>
+          </div>
+        </div>
+
+        <!-- POSTCARD BACK SIDE -->
+        <div class="postcard-back relative p-5 sm:p-8 flex flex-col justify-between h-full">
+          <div class="paper-texture"></div>
+
+          <!-- Back Header -->
+          <div class="flex justify-between items-start border-b border-brandBlack/10 pb-4">
+            <span class="font-mono text-[10px] font-bold text-brandPink tracking-wider">POSTCARD METADATA</span>
+            <button onclick="toggleCardFlip()" class="font-mono text-[9px] font-bold border-2 border-brandBlack px-2.5 py-0.5 bg-brandYellow shadow-[2px_2px_0_#000] rounded-full hover:bg-brandBlack hover:text-brandYellow transition-colors shrink-0">
+              🔄 CLICK TO FLIP
+            </button>
+          </div>
+
+          <!-- Grid Partition layout -->
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-6 my-6 flex-grow items-center">
+            
+            <!-- Address Layout Block (Left) -->
+            <div class="md:col-span-7 flex flex-col justify-center space-y-4 border-b md:border-b-0 md:border-r border-brandBlack/10 pb-6 md:pb-0 md:pr-6 h-full">
+              <div class="space-y-1">
+                <span class="font-mono text-[10px] uppercase text-zinc-400 font-bold tracking-wider">Recipient:</span>
+                <p class="font-display text-3xl text-brandBlack tracking-wide uppercase leading-none">To: Future Collaborator</p>
+                <div class="w-2/3 h-0.5 bg-brandBlack mt-2"></div>
+              </div>
+
+              <!-- Quick Coordinate Buttons -->
+              <div class="grid grid-cols-2 gap-2 mt-2">
+                <button onclick="mockDownloadR
+                esume()" class="border-2 border-brandBlack p-2 rounded-lg font-mono text-[10px] font-bold bg-brandWhite text-brandBlack hover:bg-brandYellow hover:shadow-[2px_2px_0_#000] transition-all text-left">
+                  📄 RESUME PDF
+                </button>
+                <a href="https://www.linkedin.com/in/sai-sindhu-chunduri-7b0023210/" target="_blank" class="border-2 border-brandBlack p-2 rounded-lg font-mono text-[10px] font-bold bg-brandWhite text-brandBlack hover:bg-brandBlue hover:text-white hover:shadow-[2px_2px_0_#000] transition-all text-left">
+                  💼 LINKEDIN
+                </a>
+                <a href="https://www.scaler.com/academy/profile/98f4c6861ad9" target="_blank" class="border-2 border-brandBlack p-2 rounded-lg font-mono text-[10px] font-bold bg-brandWhite text-brandBlack hover:bg-brandPink hover:text-white hover:shadow-[2px_2px_0_#000] transition-all text-left">
+                  🎯 SCALER
+                </a>
+                <a href="mailto:saisindhuchunduri@gmail.com" class="border-2 border-brandBlack p-2 rounded-lg font-mono text-[10px] font-bold bg-brandWhite text-brandBlack hover:bg-brandGreen hover:shadow-[2px_2px_0_#000] transition-all text-left">
+                  ✉ EMAIL DIRECT
+                </a>
+              </div>
+            </div>
+
+            <!-- Stamps and seals block (Right) -->
+            <div class="md:col-span-5 flex flex-col justify-between items-center md:items-end space-y-3 h-full py-1">
+              
+              <!-- Neo-brutalist Stamp with Peeling & bounce state -->
+              <div class="w-32 h-20 border-2 border-dashed border-brandBlack bg-brandWhite p-2 flex flex-col justify-between select-none transform hover:-rotate-6 hover:scale-105 hover:shadow-lg transition-transform duration-300">
+                <div class="flex justify-between items-start font-mono text-[8px] font-bold text-zinc-500 leading-none">
+                  <span>2026</span>
+                  <span>INDIA</span>
+                </div>
+                <div class="text-center font-display text-xl text-brandBlack leading-none tracking-widest my-1">SINDHU.DEV</div>
+                <div class="font-mono text-[7px] text-right font-bold text-zinc-400">HYDERABAD POST</div>
+              </div>
+
+              <!-- Inline Styled SVG QR Code -->
+              <div class="w-20 h-20 bg-brandWhite p-1 border-2 border-brandBlack shadow-[3px_3px_0_#000]">
+                <svg viewBox="0 0 100 100" class="w-full h-full text-brandBlack fill-current">
+                  <path d="M0 0h30v30H0zM40 0h20v20H40zM70 0h30v30H70zM0 40h20v20H0zM80 40h20v20H80zM0 70h30v30H0zM40 80h20v20H40zM70 70h30v30H70z M10 10h10v10H10z M80 10h10v10H80z M10 80h10v10H10z M50 50h10v10H50z" />
+                </svg>
+              </div>
+
+              <!-- Wax Seal Button to reveal hidden note -->
+              <div onclick="togglePostcardHiddenMessage(event)" class="seal-pulse w-14 h-14 bg-red-700 hover:bg-red-800 border-2 border-brandBlack rounded-full flex items-center justify-center shadow-md select-none transform rotate-6 transition-transform duration-300 cursor-pointer">
+                <span class="font-display text-white text-lg font-bold select-none tracking-widest">SS</span>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="text-center font-mono text-[9px] text-zinc-400 font-bold uppercase tracking-widest border-t border-brandBlack/10 pt-4 mt-auto">
+            Tap background to flip • Port Terminal Active
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Hidden secret message notification element -->
+    <div id="postcardEasterEgg" class="max-w-lg mx-auto bg-brandBlack text-brandWhite border-3 border-brandWhite p-5 shadow-2xl rounded-2xl hidden transform transition-all duration-300">
+      <div class="flex justify-between items-center border-b border-zinc-700 pb-2 mb-3">
+        <span class="font-mono text-[9px] text-brandYellow font-bold tracking-widest uppercase">ENCRYPTED MESSAGE REVEALED</span>
+        <button onclick="dismissEasterEgg()" class="text-zinc-500 hover:text-brandRed font-mono font-bold text-xs">CLOSE [X]</button>
+      </div>
+      <p class="font-handwritten text-lg sm:text-xl text-brandYellow leading-relaxed">
+        "You made it to the end. Thanks for believing that great software is built with patience, curiosity, and care. See you on the next project. 🚀"
+      </p>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section id="contact" class="reveal-el space-y-6">
+    <div class="sec-label">GET IN TOUCH</div>
+    
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-3 border-brandBlack shadow-xl">
+      <!-- Email -->
+      <button onclick="openPostcard()" class="p-8 bg-brandWhite border-r-3 border-b-3 lg:border-b-0 border-brandBlack flex flex-col justify-between min-h-[200px] hover:bg-brandYellow transition-all duration-200 group text-left">
+        <div>
+          <span class="text-3xl">✉</span>
+          <h4 class="font-mono text-xs text-zinc-400 font-bold uppercase tracking-wider mt-6">EMAIL</h4>
+          <p class="font-mono text-[11px] font-bold text-brandBlack break-all mt-1">saisindhuchunduri<br>@gmail.com</p>
+        </div>
+        <span class="font-display text-2xl text-brandBlack self-end transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-200">COORDINATE ↗</span>
+      </button>
+
+      <!-- Phone -->
+      <button onclick="openPostcard()" class="p-8 bg-brandWhite border-r-3 border-b-3 lg:border-b-0 border-brandBlack flex flex-col justify-between min-h-[200px] hover:bg-brandGreen transition-all duration-200 group text-left">
+        <div>
+          <span class="text-3xl">📞</span>
+          <h4 class="font-mono text-xs text-zinc-400 font-bold uppercase tracking-wider mt-6">PHONE</h4>
+          <p class="font-mono text-[11px] font-bold text-brandBlack mt-1 break-all">+91 87904 82099</p>
+        </div>
+        <span class="font-display text-2xl text-brandBlack self-end transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-200">COORDINATE ↗</span>
+      </button>
+
+      <!-- LinkedIn -->
+      <button onclick="openPostcard()" class="p-8 bg-brandWhite border-r-3 border-b-3 sm:border-b-0 border-brandBlack flex flex-col justify-between min-h-[200px] hover:bg-brandBlue hover:text-white transition-all duration-200 group text-left">
+        <div>
+          <span class="font-display text-3xl font-extrabold text-brandBlack group-hover:text-white">IN</span>
+          <h4 class="font-mono text-xs text-zinc-400 font-bold uppercase tracking-wider mt-6 group-hover:text-zinc-300">LINKEDIN</h4>
+          <p class="font-mono text-[10px] font-bold text-brandBlack group-hover:text-white mt-1 break-all">sai-sindhu-chunduri-7b0023210</p>
+        </div>
+        <span class="font-display text-2xl text-brandBlack group-hover:text-white self-end transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-200">COORDINATE ↗</span>
+      </button>
+
+      <!-- Scaler (Replaced GitHub) -->
+      <button onclick="openPostcard()" class="p-8 bg-brandWhite flex flex-col justify-between min-h-[200px] hover:bg-brandPink hover:text-white transition-all duration-200 group text-left">
+        <div>
+          <span class="text-3xl">🎯</span>
+          <h4 class="font-mono text-xs text-zinc-400 font-bold uppercase tracking-wider mt-6 group-hover:text-zinc-300">SCALER</h4>
+          <p class="font-mono text-[10px] font-bold text-brandBlack group-hover:text-white mt-1 break-all">profile/98f4c6861ad9</p>
+        </div>
+        <span class="font-display text-2xl text-brandBlack group-hover:text-white self-end transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-200">COORDINATE ↗</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="brutalist-card p-8 bg-brandBlack text-brandWhite flex flex-col md:flex-row items-center justify-between gap-6">
+    <div>
+      <span class="font-display text-3xl text-brandYellow">SINDHU.DEV</span>
+      <p class="font-mono text-[9px] text-zinc-400 tracking-wider uppercase mt-1">&copy; 2026 &bull; FORWARD-ENGINEERED WITH OBSESSION &bull; PORTAL TERMINAL ACTIVE</p>
+    </div>
+    <div class="flex flex-wrap gap-4 font-mono text-xs justify-center">
+      <a href="#work" class="hover:text-brandYellow transition-colors">WORK</a>
+      <a href="#projects" class="hover:text-brandYellow transition-colors">PROJECTS</a>
+      <a href="#skills" class="hover:text-brandYellow transition-colors">STACK</a>
+      <a href="#contact" class="hover:text-brandYellow transition-colors">CONTACT</a>
+    </div>
+  </footer>
+
+</main>
+
+<!-- BACK TO TOP -->
+<button id="btt" onclick="window.scrollTo({top:0,behavior:'smooth'})" class="fixed bottom-6 right-6 w-12 h-12 bg-brandYellow border-3 border-brandBlack shadow-[4px_4px_0_#0d0d0d] font-display text-2xl flex items-center justify-center opacity-0 pointer-events-none transition-all duration-300 hover:bg-brandBlack hover:text-brandYellow z-40 rounded-full" aria-label="Back to Top">
+  &uarr;
+</button>
+
+<!-- PREMIUM POSTCARD POPUP MODAL -->
+<div id="postcardModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-brandBlack/60 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300">
+  <div class="absolute inset-0" onclick="closePostcard()"></div>
+  
+  <div id="postcardContent" class="relative bg-brandWhite border-4 border-brandBlack p-6 sm:p-10 max-w-lg w-full shadow-[12px_12px_0_#0d0d0d] transform scale-90 translate-y-8 rotate-1 transition-all duration-300 z-10 rounded-2xl">
+    <button onclick="closePostcard()" class="absolute top-4 right-4 font-mono text-xs font-bold border-2 border-brandBlack px-2.5 py-1 hover:bg-brandRed hover:text-white transition-colors rounded-full">
+      ESC / CLOSE [X]
+    </button>
+    
+    <div class="border-b-2 border-brandBlack pb-4 mb-6">
+      <span class="font-mono text-[10px] font-bold tracking-widest text-zinc-500 uppercase">DIGITAL POSTCARD</span>
+      <h3 class="font-display text-4xl text-brandBlack mt-1">HELLO 👋</h3>
+    </div>
+    
+    <div class="space-y-4 text-sm text-zinc-800 font-body leading-relaxed">
+      <p>Thanks for visiting my portfolio space. I'd love to connect, consult, and build reliable enterprise software with you.</p>
+      <p class="font-mono text-xs font-bold text-zinc-500">PLEASE CHOOSE A COORDINATE TO CONTINUE:</p>
+    </div>
+    
+    <!-- Action Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-6">
+      <a href="mailto:saisindhuchunduri@gmail.com" class="border-2 border-brandBlack p-3 text-center font-mono text-xs font-bold bg-brandYellow text-brandBlack hover:bg-brandBlack hover:text-brandWhite transition-colors rounded-xl">
+        ✉ EMAIL DIRECT ↗
+      </a>
+      <a href="javascript:void(0)" onclick="mockDownloadResume()" class="border-2 border-brandBlack p-3 text-center font-mono text-xs font-bold bg-brandGreen text-brandBlack hover:bg-brandBlack hover:text-brandWhite transition-colors rounded-xl">
+        📄 DOWNLOAD CV (PDF) &darr;
+      </a>
+      <a href="https://www.linkedin.com/in/sai-sindhu-chunduri-7b0023210/" target="_blank" class="border-2 border-brandBlack p-3 text-center font-mono text-xs font-bold bg-brandBlue text-white hover:bg-brandBlack hover:text-brandYellow transition-colors rounded-xl">
+        💼 LINKEDIN PROFILE ↗
+      </a>
+      <a href="https://www.scaler.com/academy/profile/98f4c6861ad9" target="_blank" class="border-2 border-brandBlack p-3 text-center font-mono text-xs font-bold bg-brandPink text-white hover:bg-brandBlack hover:text-brandYellow transition-colors rounded-xl">
+        🎯 SCALER PROFILE ↗
+      </a>
+    </div>
+
+    <!-- Hidden secret message box -->
+    <div id="mockDownloadMsg" class="mt-4 p-2 bg-brandGreen/20 border border-brandGreen text-brandGreen font-mono text-[10px] text-center hidden rounded-lg">
+      ✓ Initiating Secure PDF Document Stream...
+    </div>
+  </div>
+</div>
+
+<!-- PREMIUM RESPONSIVE EXPERIENCE MODAL (Pop-up on mobile interaction) -->
+<div id="experienceModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-brandBlack/60 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300">
+  <div class="absolute inset-0" onclick="closeExperienceModal()"></div>
+  <div id="expModalContent" class="relative bg-brandWhite border-4 border-brandBlack p-6 max-w-lg w-full max-h-[85vh] overflow-y-auto shadow-[12px_12px_0_#0d0d0d] transform scale-90 translate-y-8 transition-all duration-300 z-10 rounded-2xl">
+     <!-- Template layouts get inserted here dynamically -->
+  </div>
+</div>
+
+<!-- DATA TEMPLATES FOR MOBILE DETAIL MODALS -->
+<template id="template-att">
+  <div class="flex justify-between items-start border-b-2 border-brandBlack pb-3 mb-4">
+    <span class="font-mono text-[9px] font-bold tracking-widest text-zinc-500 uppercase">AT&amp;T &bull; DETAILED OVERVIEW</span>
+    <button onclick="closeExperienceModal()" class="font-mono text-xs font-bold border-2 border-brandBlack px-2.5 py-0.5 hover:bg-brandRed hover:text-white transition-colors rounded-full">
+      CLOSE [X]
+    </button>
+  </div>
+  <div class="space-y-6">
+    <div class="flex items-center gap-3 bg-brandBlack text-brandWhite p-3 border-2 border-brandBlack shadow-[4px_4px_0_#0d0d0d] rounded-xl">
+      <div class="w-10 h-10 bg-brandBlue text-white font-display text-lg font-bold flex items-center justify-center border border-white rounded-lg shrink-0">AT</div>
+      <div>
+        <h4 class="font-display text-xl text-brandYellow tracking-wider leading-none">AT&amp;T</h4>
+        <span class="font-mono text-[8px] text-zinc-400 font-bold uppercase block mt-1">SEP 2024 — PRESENT &bull; HYDERABAD</span>
+      </div>
+    </div>
+    
+    <div class="space-y-4">
+      <div>
+        <h4 class="font-display text-lg tracking-wide text-brandBlack pl-3 border-l-4 border-brandRed uppercase font-bold">CONTRACT LIFECYCLE MANAGEMENT</h4>
+        <ul class="list-none space-y-2.5 mt-3 text-xs text-zinc-700 pl-4">
+          <li class="relative before:content-['▶'] before:absolute before:-left-4 before:text-brandRed before:text-[7px] before:top-1.5">
+            Engineered robust <strong>Template &amp; Clause Management Microservices</strong> utilizing Spring Boot, implementing meticulous version governance which increased clause reuse architecture by <strong>40%</strong>.
+          </li>
+          <li class="relative before:content-['▶'] before:absolute before:-left-4 before:text-brandRed before:text-[7px] before:top-1.5">
+            Coordinated with Salesforce APIs, automated signature pipelines, and payment processors through resilient transactional patterns and secure REST configurations.
+          </li>
+          <li class="relative before:content-['▶'] before:absolute before:-left-4 before:text-brandRed before:text-[7px] before:top-1.5">
+            Designed index strategies and optimized complex Spring Data JPA integrations to cut system query latencies by <strong>30%</strong>.
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-display text-lg tracking-wide text-brandBlack pl-3 border-l-4 border-brandRed uppercase font-bold mt-4">ENTERPRISE INFRASTRUCTURE SYSTEM (EIS)</h4>
+        <ul class="list-none space-y-2.5 mt-3 text-xs text-zinc-700 pl-4">
+          <li class="relative before:content-['▶'] before:absolute before:-left-4 before:text-brandRed before:text-[7px] before:top-1.5">
+            Drove architecture modifications resulting in severe vulnerability mitigation and optimized static inspection quality within enterprise SonarQube dashboards.
+          </li>
+          <li class="relative before:content-['▶'] before:absolute before:-left-4 before:text-brandRed before:text-[7px] before:top-1.5">
+            Architected high-density relational processes, stored routines, and PL/SQL procedures inside core high-availability Oracle clusters.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="flex flex-wrap gap-1.5 pt-4 border-t border-zinc-200">
+      <span class="px-2 py-0.5 bg-brandWhite border-2 border-brandBlack font-mono text-[9px] font-bold shadow-[1.5px_1.5px_0_#000] uppercase rounded-full">Spring Boot</span>
+      <span class="px-2 py-0.5 bg-brandWhite border-2 border-brandBlack font-mono text-[9px] font-bold shadow-[1.5px_1.5px_0_#000] uppercase rounded-full">Java</span>
+      <span class="px-2 py-0.5 bg-brandWhite border-2 border-brandBlack font-mono text-[9px] font-bold shadow-[1.5px_1.5px_0_#000] uppercase rounded-full">Oracle</span>
+      <span class="px-2 py-0.5 bg-brandWhite border-2 border-brandBlack font-mono text-[9px] font-bold shadow-[1.5px_1.5px_0_#000] uppercase rounded-full">SonarQube</span>
+      <span class="px-2 py-0.5 bg-brandWhite border-2 border-brandBlack font-mono text-[9px] font-bold shadow-[1.5px_1.5px_0_#000] uppercase rounded-full">GenAI</span>
+    </div>
+  </div>
+</template>
+
+<template id="template-maersk">
+  <div class="flex justify-between items-start border-b-2 border-brandBlack pb-3 mb-4">
+    <span class="font-mono text-[9px] font-bold tracking-widest text-zinc-500 uppercase">MAERSK &bull; DETAILED OVERVIEW</span>
+    <button onclick="closeExperienceModal()" class="font-mono text-xs font-bold border-2 border-brandBlack px-2.5 py-0.5 hover:bg-brandRed hover:text-white transition-colors rounded-full">
+      CLOSE [X]
+    </button>
+  </div>
+  <div class="space-y-6">
+    <div class="flex items-center gap-3 bg-brandBlack text-brandWhite p-3 border-2 border-brandBlack shadow-[4px_4px_0_#0d0d0d] rounded-xl">
+      <div class="w-10 h-10 bg-white text-brandBlack font-display text-lg font-bold flex items-center justify-center border border-brandBlack rounded-lg shrink-0">M</div>
+      <div>
+        <h4 class="font-display text-xl text-brandYellow tracking-wider leading-none">MAERSK GLOBAL</h4>
+        <span class="font-mono text-[8px] text-zinc-400 font-bold uppercase block mt-1">AUG 2022 — JUN 2024 &bull; BANGALORE</span>
+      </div>
+    </div>
+    
+    <div class="space-y-4">
+      <div>
+        <h4 class="font-display text-lg tracking-wide text-brandBlack pl-3 border-l-4 border-brandRed uppercase font-bold">ORDER HANDLING &amp; BOOKING</h4>
+        <ul class="list-none space-y-2.5 mt-3 text-xs text-zinc-700 pl-4">
+          <li class="relative before:content-['▶'] before:absolute before:-left-4 before:text-brandRed before:text-[7px] before:top-1.5">
+            Programmed <strong>Instant Self-Service Booking workflows</strong> leveraging Temporal engine integration, scaling logistic transaction accuracy by <strong>50%</strong>.
+          </li>
+          <li class="relative before:content-['▶'] before:absolute before:-left-4 before:text-brandRed before:text-[7px] before:top-1.5">
+            Designed weight capacity APIs using Java reactive models to handle high-frequency concurrent verification requests.
+          </li>
+          <li class="relative before:content-['▶'] before:absolute before:-left-4 before:text-brandRed before:text-[7px] before:top-1.5">
+            Pioneered high-velocity REST structures, elevating baseline transaction throughput indicators by over <strong>20%</strong>.
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-display text-lg tracking-wide text-brandBlack pl-3 border-l-4 border-brandRed uppercase font-bold mt-4">EVENT LOGGING GATEWAY</h4>
+        <ul class="list-none space-y-2.5 mt-3 text-xs text-zinc-700 pl-4">
+          <li class="relative before:content-['▶'] before:absolute before:-left-4 before:text-brandRed before:text-[7px] before:top-1.5">
+            Engineered custom <strong>Go microservices</strong> for self-service event tracking, enabling visual interaction and debugging across Kafka distributed hubs.
+          </li>
+          <li class="relative before:content-['▶'] before:absolute before:-left-4 before:text-brandRed before:text-[7px] before:top-1.5">
+            Streamlined Grafana dashboard monitoring hooks, cutting MTTR (Mean Time to Resolution) metrics by up to <strong>75%</strong>.
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="flex flex-wrap gap-1.5 pt-4 border-t border-zinc-200">
+      <span class="px-2 py-0.5 bg-brandWhite border-2 border-brandBlack font-mono text-[9px] font-bold shadow-[1.5px_1.5px_0_#000] uppercase rounded-full">Go</span>
+      <span class="px-2 py-0.5 bg-brandWhite border-2 border-brandBlack font-mono text-[9px] font-bold shadow-[1.5px_1.5px_0_#000] uppercase rounded-full">Kafka</span>
+      <span class="px-2 py-0.5 bg-brandWhite border-2 border-brandBlack font-mono text-[9px] font-bold shadow-[1.5px_1.5px_0_#000] uppercase rounded-full">Temporal</span>
+      <span class="px-2 py-0.5 bg-brandWhite border-2 border-brandBlack font-mono text-[9px] font-bold shadow-[1.5px_1.5px_0_#000] uppercase rounded-full">Grafana</span>
+      <span class="px-2 py-0.5 bg-brandWhite border-2 border-brandBlack font-mono text-[9px] font-bold shadow-[1.5px_1.5px_0_#000] uppercase rounded-full">Java</span>
+    </div>
+  </div>
+</template>
+
+<!-- EASTER EGG TERMINAL HUD -->
+<div id="terminalHud" class="fixed bottom-6 left-6 z-50 w-[320px] bg-brandBlack border-3 border-brandWhite text-brandWhite font-mono text-xs p-4 hidden shadow-xl rounded-xl">
+  <div class="flex justify-between items-center border-b border-zinc-700 pb-2 mb-2">
+    <span class="text-[9px] font-bold text-brandYellow">PORTAL TERMINAL HUD</span>
+    <button onclick="toggleTerminal()" class="text-zinc-500 hover:text-brandRed font-bold">X</button>
+  </div>
+  <div class="space-y-2 max-h-[220px] overflow-y-auto" id="terminalFeed">
+    <p class="text-zinc-400">&gt; System initialized.</p>
+    <p class="text-zinc-400">&gt; Type numbers or click below to launch:</p>
+  </div>
+  <div class="grid grid-cols-2 gap-1 mt-3">
+    <button onclick="executeTerminalCommand('1')" class="bg-zinc-800 text-brandYellow p-1 text-[10px] hover:bg-brandWhite hover:text-brandBlack rounded">1. Resume</button>
+    <button onclick="executeTerminalCommand('2')" class="bg-zinc-800 text-brandYellow p-1 text-[10px] hover:bg-brandWhite hover:text-brandBlack rounded">2. Contact</button>
+    <button onclick="executeTerminalCommand('3')" class="bg-zinc-800 text-brandYellow p-1 text-[10px] hover:bg-brandWhite hover:text-brandBlack rounded">3. Scaler</button>
+    <button onclick="executeTerminalCommand('4')" class="bg-zinc-800 text-brandYellow p-1 text-[10px] hover:bg-brandWhite hover:text-brandBlack rounded">4. Fun Facts</button>
+  </div>
+</div>
+
+<!-- TOAST NOTIFICATION FOR VISITOR HISTORY -->
+<div id="visitorToast" class="fixed bottom-6 left-6 z-40 p-4 max-w-[300px] transform -translate-x-96 transition-transform duration-500 bg-brandWhite/95 backdrop-blur-sm border-3 border-brandBlack shadow-lg pointer-events-none rounded-xl">
+  <div class="flex justify-between items-start mb-1 gap-4">
+    <span class="font-mono text-[9px] font-bold text-brandRed tracking-widest">VISITOR MEMORY</span>
+    <button onclick="dismissToast(true)" class="text-xs font-mono font-bold text-zinc-500 hover:text-brandRed border border-brandBlack px-1.5 py-0.5 bg-brandWhite transition-colors rounded-full">✖</button>
+  </div>
+  <p id="visitorGreeting" class="text-xs text-brandBlack font-body font-medium"></p>
+</div>
+
+<script>
+/* ── MARQUEE CLONE BUILDER ── */
+const track = document.getElementById('marqueeTrack');
+if (track) {
+  const inner = track.innerHTML;
+  track.innerHTML = inner + inner;
+}
+
+/* ── PREMIUM HARDWARE SYNTHESIZER SFX ENGINE (Web Audio API) ── */
+let isSFXEnabled = true; // Enabled by default!
+let audioCtx = null;
+
+function playSynthSound(freq, type, duration, volume) {
+  if (!isSFXEnabled) return;
+  try {
+    if (!audioCtx) {
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    // Safety check for suspended context states on some browsers
+    if (audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
+    
+    const osc = audioCtx.createOscillator();
+    const gainNode = audioCtx.createGain();
+    
+    osc.type = type || 'sine';
+    osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+    
+    gainNode.gain.setValueAtTime(volume || 0.1, audioCtx.currentTime);
+    gainNode.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+    
+    osc.connect(gainNode);
+    gainNode.connect(audioCtx.destination);
+    
+    osc.start();
+    osc.stop(audioCtx.currentTime + duration);
+  } catch (err) {
+    console.warn("Audio Context blocked or failed to load on target hardware: ", err);
+  }
+}
+
+// Synth hover click mechanics
+function triggerHoverSFX() {
+  playSynthSound(1200, 'triangle', 0.04, 0.04);
+}
+
+function triggerClickSFX() {
+  playSynthSound(587.33, 'sine', 0.15, 0.08); // D5
+  setTimeout(() => {
+    playSynthSound(880, 'sine', 0.25, 0.08); // A5
+  }, 40);
+}
+
+function toggleSFXState() {
+  isSFXEnabled = !isSFXEnabled;
+  const btn = document.getElementById('sfxToggleBtn');
+  if (btn) {
+    btn.textContent = isSFXEnabled ? '🔊' : '🔇';
+    btn.style.backgroundColor = isSFXEnabled ? 'var(--yellow)' : 'var(--white)';
+  }
+}
+
+/* ── CUSTOM RE-ROTATED DIAMOND CURSOR SYSTEM ── */
+const customCursor = document.getElementById('customCursor');
+let curX = 0, curY = 0;
+let tarX = 0, tarY = 0;
+
+document.addEventListener('mousemove', (e) => {
+  tarX = e.clientX;
+  tarY = e.clientY;
+  document.body.style.setProperty('--mouse-x', e.clientX + 'px');
+  document.body.style.setProperty('--mouse-y', e.clientY + 'px');
+});
+
+// Smooth lerp loop for organic drag animation
+function updateCursorPhysics() {
+  curX += (tarX - curX) * 0.18;
+  curY += (tarY - curY) * 0.18;
+  if (customCursor) {
+    customCursor.style.left = curX + 'px';
+    customCursor.style.top = curY + 'px';
+  }
+  requestAnimationFrame(updateCursorPhysics);
+}
+requestAnimationFrame(updateCursorPhysics);
+
+// Connect elements to change square to diamond on hover and play tick SFX
+function bindCursorSFXHandlers() {
+  const targets = document.querySelectorAll('a, button, [onclick], .skill-tag, .brutalist-card, .seal-pulse, #postcardInner');
+  targets.forEach(el => {
+    if (el.dataset.sfxBound) return;
+    el.dataset.sfxBound = "true";
+
+    el.addEventListener('mouseenter', () => {
+      if (customCursor) {
+        customCursor.classList.add('diamond-hover');
+      }
+      triggerHoverSFX();
+    });
+    el.addEventListener('mouseleave', () => {
+      if (customCursor) {
+        customCursor.classList.remove('diamond-hover');
+      }
+    });
+    el.addEventListener('click', () => {
+      triggerClickSFX();
+    });
+  });
+}
+
+// Observe dynamic additions
+const dynamicObserver = new MutationObserver(() => {
+  bindCursorSFXHandlers();
+});
+dynamicObserver.observe(document.body, { childList: true, subtree: true });
+
+/* ── STREAMING_CHUNK: Programming handwritten typewriter mechanics... ── */
+/* ── HANDWRITTEN POSTCARD TYPING SYSTEM ── */
+const postcardMessage = `Hello,
+
+Thank you for taking the time to visit my portfolio.
+
+This website represents my professional journey, technical expertise, and the passion I bring to building scalable software solutions. Great engineering is about creating lasting value through thoughtful design and execution.
+
+I appreciate your visit and welcome the opportunity to connect.
+
+Warm regards,`;
+
+let postcardTyped = false;
+
+function typePostcardMessage() {
+  if (postcardTyped) return;
+  postcardTyped = true;
+
+  const typewriterContainer = document.getElementById('postcardTypewriter');
+  const signatureContainer = document.getElementById('postcardSignature');
+  const caretElement = document.getElementById('sigBlink');
+  
+  if (!typewriterContainer) return;
+  
+  let index = 0;
+  typewriterContainer.innerHTML = '';
+  
+  // Show caret
+  if (caretElement) caretElement.classList.remove('hidden');
+
+  function typeChar() {
+    if (index < postcardMessage.length) {
+      const char = postcardMessage.charAt(index);
+      if (char === '\n') {
+        typewriterContainer.innerHTML += '<br>';
+      } else {
+        typewriterContainer.innerHTML += char;
+      }
+      index++;
+      
+      // Dynamic micro pauses for punctuation
+      let delay = 18;
+      if (char === '.' || char === '!') delay = 350;
+      else if (char === ',') delay = 150;
+      
+      setTimeout(typeChar, delay);
+    } else {
+      // Typing done, animate in signature
+      if (signatureContainer) {
+        signatureContainer.classList.remove('opacity-0');
+        signatureContainer.classList.add('opacity-100');
+      }
+      if (caretElement) caretElement.classList.add('hidden');
+    }
+  }
+
+  typeChar();
+}
+
+// Trigger typewriter when entering viewport
+const postcardObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      setTimeout(typePostcardMessage, 500);
+      postcardObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+
+const postcardTarget = document.getElementById('postcardSection');
+if (postcardTarget) {
+  postcardObserver.observe(postcardTarget);
+}
+
+// Card Flip Controller
+function toggleCardFlip() {
+  const innerCard = document.getElementById('postcardInner');
+  if (innerCard) {
+    innerCard.classList.toggle('flipped');
+  }
+}
+
+// Ensure clicking inner nested buttons doesn't trigger flip blockages
+function handleCardClick(event) {
+  const ignoreTags = ['BUTTON', 'A', 'SPAN', 'svg', 'path'];
+  if (ignoreTags.includes(event.target.tagName) || event.target.closest('button') || event.target.closest('a')) {
+    return;
+  }
+  toggleCardFlip();
+}
+
+/* ── POSTCARD WAX SEAL HIDDEN NOTE OVERLAY ── */
+function togglePostcardHiddenMessage(event) {
+  event.stopPropagation(); // Avoid triggering card flips
+  const overlay = document.getElementById('postcardEasterEgg');
+  if (overlay) {
+    overlay.classList.remove('hidden');
+    overlay.scrollIntoView({ behavior: 'smooth' });
+    triggerClickSFX();
+  }
+}
+
+function dismissEasterEgg() {
+  const overlay = document.getElementById('postcardEasterEgg');
+  if (overlay) {
+    overlay.classList.add('hidden');
+  }
+}
+
+// Signature multi-click detector
+let sigClicks = 0;
+function handleSignatureClick() {
+  sigClicks++;
+  triggerClickSFX();
+  if (sigClicks === 3) {
+    const overlay = document.getElementById('postcardEasterEgg');
+    if (overlay) {
+      overlay.classList.remove('hidden');
+      overlay.scrollIntoView({ behavior: 'smooth' });
+    }
+    sigClicks = 0;
+  }
+}
+
+/* ── STREAMING_CHUNK: Initializing user memory and analytics counters... ── */
+/* ── INTELLIGENT VISITOR STORAGE ENGINE ── */
+let toastTimer = null;
+
+function dismissToast(manual = false) {
+  const toast = document.getElementById('visitorToast');
+  if (!toast) return;
+
+  if (toastTimer) {
+    clearTimeout(toastTimer);
+    toastTimer = null;
+  }
+
+  toast.classList.remove('translate-x-0');
+  toast.classList.add('-translate-x-96');
+  toast.style.pointerEvents = 'none';
+
+  if (manual) {
+    const sevenDays = 7 * 24 * 60 * 60 * 1000;
+    localStorage.setItem('sindhu_portfolio_cooldown_ts', (Date.now() + sevenDays).toString());
+    sessionStorage.setItem('sindhu_portfolio_dismissed_session', 'true');
+  }
+}
+
+function initVisitorMemory() {
+  const toast = document.getElementById('visitorToast');
+  const greeting = document.getElementById('visitorGreeting');
+  if (!toast || !greeting) return;
+
+  if (sessionStorage.getItem('sindhu_portfolio_dismissed_session') === 'true') {
+    return;
+  }
+
+  const cooldown = localStorage.getItem('sindhu_portfolio_cooldown_ts');
+  if (cooldown && Date.now() < parseInt(cooldown, 10)) {
+    return;
+  }
+
+  const hasVisitedBefore = localStorage.getItem('sindhu_portfolio_visited_ts');
+  const nowStr = Date.now().toString();
+
+  toast.style.pointerEvents = 'auto';
+
+  if (!hasVisitedBefore) {
+    greeting.innerHTML = "<strong>👋 Welcome!</strong><br>Nice to meet you.<br>Enjoy exploring my portfolio space.";
+    localStorage.setItem('sindhu_portfolio_visited_ts', nowStr);
+    
+    setTimeout(() => {
+      toast.classList.remove('-translate-x-96');
+      toast.classList.add('translate-x-0');
+    }, 1200);
+
+    toastTimer = setTimeout(() => {
+      dismissToast(false);
+    }, 7200); 
+  } else {
+    greeting.innerHTML = "<strong>👋 Welcome back!</strong><br>Glad to see you again.";
+    
+    setTimeout(() => {
+      toast.classList.remove('-translate-x-96');
+      toast.classList.add('translate-x-0');
+    }, 1200);
+
+    toastTimer = setTimeout(() => {
+      dismissToast(false);
+    }, 5200); 
+
+    const standardCooldown = 24 * 60 * 60 * 1000;
+    localStorage.setItem('sindhu_portfolio_cooldown_ts', (Date.now() + standardCooldown).toString());
+  }
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  initVisitorMemory();
+  bindCursorSFXHandlers();
+});
+
+/* ── 3D BUSINESS CARD CONTROLLER ── */
+function flipBizCard() {
+  const card = document.getElementById('bizCard');
+  card.classList.toggle('flipped');
+}
+
+/* ── POSTCARD POPUP LOGIC ── */
+function openPostcard() {
+  const modal = document.getElementById('postcardModal');
+  const content = document.getElementById('postcardContent');
+  modal.classList.remove('opacity-0', 'pointer-events-none');
+  content.classList.remove('scale-90', 'translate-y-8', 'rotate-1');
+  content.classList.add('scale-100', 'translate-y-0', 'rotate-0');
+}
+
+function closePostcard() {
+  const modal = document.getElementById('postcardModal');
+  const content = document.getElementById('postcardContent');
+  modal.classList.add('opacity-0', 'pointer-events-none');
+  content.classList.add('scale-90', 'translate-y-8', 'rotate-1');
+  content.classList.remove('scale-100', 'translate-y-0', 'rotate-0');
+}
+
+/* ── DYNAMIC RESPONSIVE EXPERIENCE MODAL ── */
+function openExperienceModal(expId) {
+  const modal = document.getElementById('experienceModal');
+  const content = document.getElementById('expModalContent');
+  const template = document.getElementById(`template-${expId}`);
+  
+  if (!modal || !content || !template) return;
+  
+  content.innerHTML = template.innerHTML;
+  
+  modal.classList.remove('opacity-0', 'pointer-events-none');
+  content.classList.remove('scale-90', 'translate-y-8');
+  content.classList.add('scale-100', 'translate-y-0');
+}
+
+function closeExperienceModal() {
+  const modal = document.getElementById('experienceModal');
+  const content = document.getElementById('expModalContent');
+  
+  if (!modal || !content) return;
+  
+  modal.classList.add('opacity-0', 'pointer-events-none');
+  content.classList.add('scale-90', 'translate-y-8');
+  content.classList.remove('scale-100', 'translate-y-0');
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closePostcard();
+    closeExperienceModal();
+    toggleTerminal(true);
+    toggleMobileNav(true);
+  }
+});
+
+function mockDownloadResume() {
+  const loaderMsg = document.getElementById('mockDownloadMsg');
+  if (loaderMsg) loaderMsg.classList.remove('hidden');
+  setTimeout(() => {
+    if (loaderMsg) loaderMsg.classList.add('hidden');
+    // Updated to point directly to the requested PDF file
+    window.open('sindhu_resume.pdf', '_blank');
+  }, 1500);
+}
+
+/* ── MOBILE NAV TOGGLE ── */
+function toggleMobileNav(forceClose = false) {
+  const mobileNav = document.getElementById('mobileNav');
+  const overlay = document.getElementById('mobileNavOverlay');
+  
+  if (forceClose) {
+    mobileNav.classList.add('-translate-y-[150%]');
+    overlay.classList.add('opacity-0', 'pointer-events-none');
+    overlay.classList.remove('opacity-100');
+    return;
+  }
+  
+  if (mobileNav.classList.contains('-translate-y-[150%]')) {
+    mobileNav.classList.remove('-translate-y-[150%]');
+    overlay.classList.remove('opacity-0', 'pointer-events-none');
+    overlay.classList.add('opacity-100');
+  } else {
+    mobileNav.classList.add('-translate-y-[150%]');
+    overlay.classList.add('opacity-0', 'pointer-events-none');
+    overlay.classList.remove('opacity-100');
+  }
+}
+
+/* ── SECRET TERMINAL EASTER EGG ── */
+let keyBuffer = '';
+/* ── TIMELINE SCROLL HIGHLIGHTER & DYNAMIC NAVBAR DOCK ── */
+const sections = document.querySelectorAll('section');
+const dots = document.querySelectorAll('.timeline-dot-anchor');
+
+window.addEventListener('scroll', () => {
+  // 1. Reading Progress Bar Math
+  const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (winScroll / height) * 100;
+  
+  const navProgress = document.getElementById('navProgress');
+  if (navProgress) navProgress.style.width = scrolled + '%';
+  
+  const mobProgress = document.getElementById('mobileNavProgress');
+  if (mobProgress) mobProgress.style.width = scrolled + '%';
+
+  // 2. Dynamic Dock Sizing Logic (Shrink on scroll)
+  const headerWrapper = document.getElementById('mainHeaderWrapper');
+  const headerInner = document.getElementById('mainHeader');
+  
+  if (headerWrapper && headerInner) {
+    if (window.scrollY > 80) {
+      // Scrolled State - compact and sleek
+      headerWrapper.classList.replace('top-6', 'top-2');
+      headerWrapper.classList.replace('max-w-7xl', 'max-w-5xl');
+      headerInner.classList.replace('p-2', 'p-1');
+      headerInner.classList.replace('shadow-[8px_8px_0_#0d0d0d]', 'shadow-[4px_4px_0_#0d0d0d]');
+    } else {
+      // Top State - expansive and padded
+      headerWrapper.classList.replace('top-2', 'top-6');
+      headerWrapper.classList.replace('max-w-5xl', 'max-w-7xl');
+      headerInner.classList.replace('p-1', 'p-2');
+      headerInner.classList.replace('shadow-[4px_4px_0_#0d0d0d]', 'shadow-[8px_8px_0_#0d0d0d]');
+    }
+  }
+
+  // 3. Determine Active Section
+  let activeSectionId = 'hero';
+  sections.forEach(sec => {
+    const top = sec.offsetTop - 240;
+    const secHeight = sec.offsetHeight;
+    if (window.scrollY >= top && window.scrollY < top + secHeight) {
+      activeSectionId = sec.getAttribute('id');
+    }
+  });
+
+  // 4. Highlight Right Timeline Dots
+  dots.forEach(dot => {
+    const dotSec = dot.getAttribute('data-section');
+    const childDot = dot.querySelector('.timeline-dot');
+    if (dotSec === activeSectionId) {
+      childDot.classList.add('active');
+    } else {
+      childDot.classList.remove('active');
+    }
+  });
+
+  // 5. Highlight Dynamic Navbar Dock Links
+  const topNavLinks = document.querySelectorAll('.top-nav-link');
+  topNavLinks.forEach(link => {
+    if (link.getAttribute('data-nav') === activeSectionId) {
+      link.classList.add('active');
+    } else {
+      link.classList.remove('active');
+    }
+  });
+
+  // 6. Back to top button visibility
+  const btt = document.getElementById('btt');
+  if (window.scrollY > 400) {
+    btt.classList.remove('opacity-0', 'pointer-events-none');
+  } else {
+    btt.classList.add('opacity-0', 'pointer-events-none');
+  }
+});
+
+/* ── REVEAL ON SCROLL OBSERVER ── */
+const observerOptions = {
+  threshold: 0.05,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const revealObserver = new IntersectionObserver((entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('active');
+      observer.unobserve(entry.target);
+    }
+  });
+}, observerOptions);
+
+document.querySelectorAll('.reveal-el').forEach(el => {
+  revealObserver.observe(el);
+});
+
+/* ── RECRUITER COUNTER ANIMATION ── */
+function runCounter(id, start, end, suffix, duration) {
+  const targetElement = document.getElementById(id);
+  if (!targetElement) return;
+
+  const range = end - start;
+  let current = start;
+  const increment = range / (duration / 16);
+  
+  const timer = setInterval(() => {
+    current += increment;
+    if ((increment > 0 && current >= end) || (increment < 0 && current <= end)) {
+      clearInterval(timer);
+      targetElement.textContent = end + suffix;
+    } else {
+      targetElement.textContent = Math.floor(current) + suffix;
+    }
+  }, 16);
+}
+
+const statsObserver = new IntersectionObserver((entries, observer) => {
+  if (entries[0].isIntersecting) {
+    runCounter('stat-years', 0, 3, '+', 800);
+    runCounter('stat-f500', 0, 2, '', 600);
+    runCounter('stat-reuse', 0, 40, '%', 1000);
+    runCounter('stat-alert', 0, 75, '%', 1200);
+    runCounter('stat-booking', 0, 50, '%', 800);
+    observer.disconnect();
+  }
+}, { threshold: 0.1 });
+
+const statSection = document.getElementById('stat-years');
+if (statSection) {
+  statsObserver.observe(statSection.parentElement.parentElement);
+}
+
+/* ── DRAGGABLE STACK BOARD (Interactive Physics) ── */
+const board = document.getElementById('skillsBoard');
+const skills = [
+  { label: 'Java 21', bg: '#ffe135', color: '#0d0d0d' },
+  { label: 'Spring Boot 3', bg: '#00e676', color: '#0d0d0d' },
+  { label: 'Apache Kafka', bg: '#ff2d2d', color: '#f7f4ed' },
+  { label: 'Golang', bg: '#1a6fff', color: '#f7f4ed' },
+  { label: 'Kubernetes', bg: '#ff6b1a', color: '#f7f4ed' },
+  { label: 'Azure Cloud', bg: '#0d0d0d', color: '#ffe135' },
+  { label: 'React.js', bg: '#ff3da8', color: '#f7f4ed' },
+  { label: 'Temporal.io', bg: '#00e676', color: '#0d0d0d' },
+  { label: 'PostgreSQL', bg: '#ffe135', color: '#0d0d0d' },
+  { label: 'Grafana Alerts', bg: '#ff6b1a', color: '#f7f4ed' },
+  { label: 'Prometheus', bg: '#ff2d2d', color: '#f7f4ed' },
+  { label: 'Generative AI', bg: '#0d0d0d', color: '#f7f4ed' }
+];
+
+skills.forEach((skill, idx) => {
+  const tag = document.createElement('div');
+  tag.className = 'skill-tag rounded-full';
+  tag.textContent = skill.label;
+  tag.style.background = skill.bg;
+  tag.style.color = skill.color;
+
+  const columns = window.innerWidth < 768 ? 2 : 4;
+  const colSpacing = window.innerWidth < 768 ? 140 : 240;
+  const rowSpacing = 80;
+  
+  const x = 20 + (idx % columns) * colSpacing;
+  const y = 30 + Math.floor(idx / columns) * rowSpacing;
+
+  tag.style.left = x + 'px';
+  tag.style.top = y + 'px';
+
+  let dragging = false;
+  let offsetX = 0;
+  let offsetY = 0;
+  let velX = 0;
+  let velY = 0;
+  let lastX = 0;
+  let lastY = 0;
+
+  tag.addEventListener('mousedown', e => {
+    dragging = true;
+    const rect = tag.getBoundingClientRect();
+    offsetX = e.clientX - rect.left;
+    offsetY = e.clientY - rect.top;
+    lastX = e.clientX;
+    lastY = e.clientY;
+    tag.style.zIndex = '100';
+    e.preventDefault();
+  });
+
+  document.addEventListener('mousemove', e => {
+    if (!dragging) return;
+    velX = e.clientX - lastX;
+    velY = e.clientY - lastY;
+    lastX = e.clientX;
+    lastY = e.clientY;
+
+    const boardRect = board.getBoundingClientRect();
+    let computedX = e.clientX - boardRect.left - offsetX;
+    let computedY = e.clientY - boardRect.top - offsetY;
+
+    computedX = Math.max(0, Math.min(boardRect.width - tag.offsetWidth, computedX));
+    computedY = Math.max(0, Math.min(boardRect.height - tag.offsetHeight, computedY));
+
+    tag.style.left = computedX + 'px';
+    tag.style.top = computedY + 'px';
+  });
+
+  document.addEventListener('mouseup', () => {
+    if (!dragging) return;
+    dragging = false;
+    tag.style.zIndex = '10';
+
+    let posX = parseFloat(tag.style.left);
+    let posY = parseFloat(tag.style.top);
+    let friction = 0.88;
+
+    const physicsStep = () => {
+      velX *= friction;
+      velY *= friction;
+      velY += 0.35; // Gravity acceleration
+
+      posX += velX;
+      posY += velY;
+
+      const limitsX = board.offsetWidth - tag.offsetWidth;
+      const limitsY = board.offsetHeight - tag.offsetHeight;
+
+      if (posX < 0) { posX = 0; velX *= -0.5; }
+      if (posX > limitsX) { posX = limitsX; velX *= -0.5; }
+      if (posY < 0) { posY = 0; velY *= -0.5; }
+      if (posY > limitsY) { posY = limitsY; velY *= -0.6; } // bouncy collision
+
+      tag.style.left = posX + 'px';
+      tag.style.top = posY + 'px';
+
+      if (Math.abs(velX) > 0.15 || Math.abs(velY) > 0.15 || posY < limitsY) {
+        requestAnimationFrame(physicsStep);
+      }
+    };
+    requestAnimationFrame(physicsStep);
+  });
+
+  tag.addEventListener('touchstart', e => {
+    const touch = e.touches[0];
+    dragging = true;
+    const rect = tag.getBoundingClientRect();
+    offsetX = touch.clientX - rect.left;
+    offsetY = touch.clientY - rect.top;
+    lastX = touch.clientX;
+    lastY = touch.clientY;
+    tag.style.zIndex = '100';
+    e.preventDefault();
+  }, { passive: false });
+
+  tag.addEventListener('touchmove', e => {
+    if (!dragging) return;
+    const touch = e.touches[0];
+    velX = touch.clientX - lastX;
+    velY = touch.clientY - lastY;
+    lastX = touch.clientX;
+    lastY = touch.clientY;
+
+    const boardRect = board.getBoundingClientRect();
+    let computedX = touch.clientX - boardRect.left - offsetX;
+    let computedY = touch.clientY - boardRect.top - offsetY;
+
+    computedX = Math.max(0, Math.min(boardRect.width - tag.offsetWidth, computedX));
+    computedY = Math.max(0, Math.min(boardRect.height - tag.offsetHeight, computedY));
+
+    tag.style.left = computedX + 'px';
+    tag.style.top = computedY + 'px';
+    e.preventDefault();
+  }, { passive: false });
+
+  tag.addEventListener('touchend', () => {
+    if (!dragging) return;
+    dragging = false;
+    tag.style.zIndex = '10';
+  });
+
+  board.appendChild(tag);
+});
+</script>
+</body>
+</html>
